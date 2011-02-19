@@ -1,7 +1,8 @@
 var testCase = require('nodeunit').testCase
   , url = require('url')
   , gravatar = require('../lib/gravatar')
-  , baseURL = 'http://www.gravatar.com/avatar/';
+  , baseURL = "http://www.gravatar.com/avatar/"
+  , baseSecureURL = "https://secure.gravatar.com/avatar/";
 
 module.exports = testCase({
   'it should gererate correct uri given an email': function(test) {
@@ -25,8 +26,7 @@ module.exports = testCase({
   },
   'it should allow https gravatar uri generation': function(test) {
     var gravatarURL = gravatar.url('emerleite@gmail.com', {}, true);
-    var protocol = url.parse(gravatarURL).protocol;
-    test.equal(protocol, 'https:');
+    test.equal(gravatar.url('emerleite@gmail.com', {}, true), baseSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
     test.done();
   }
 });
