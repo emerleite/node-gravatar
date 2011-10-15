@@ -1,3 +1,5 @@
+### 1.0.3
+- Email trim (By Daniel Gasienica - @gasi) - Issue #2
 ### 1.0.2
 - Using index.js as main in package.json. This is a standard in npm
 ### 1.0.1
