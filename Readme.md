@@ -17,7 +17,7 @@ Instalation
 -----------
 > npm install gravatar
 
-Usuage
+Usage
 ------
     var gravatar = require('gravatar');
     gravatar.url(email, options, https=false);
