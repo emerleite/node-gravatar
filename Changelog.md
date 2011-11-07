@@ -1,3 +1,5 @@
+### 1.0.4
+- Test script to avoid global nodeunit - Fix #4
 ### 1.0.3
 - Email trim (By Daniel Gasienica - @gasi) - Issue #2
 ### 1.0.2
