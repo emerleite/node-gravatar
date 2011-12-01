@@ -7,8 +7,7 @@ Dependencies
 ------------
 
 ### Runtime
-* Node 0.2.X+
-* Works with Node.js 0.4.X too.
+* Works with Node.js 0.4.X.
 
 ### Development/Tests
 * nodeunit
@@ -23,7 +22,7 @@ Usage
     gravatar.url(email, options, https=false);
 
 ## Where:
-* email: 
+* email:
   The gravatar email
 * options:
   Query string options. Ex: size or s, default or d, rating or r, forcedefault or f. 
@@ -32,15 +31,19 @@ Usage
   Define if will use secure gravatar. Default is false.
 
 ### Examples
-    var gravatar = require('gravatar');
-    var url = gravatar.url('emerleite@gmail.com', {s: '200', r: 'pg', d: '404'});
+    var Gravatar = require('gravatar').Gravatar;
+    var gravatar = new Gravatar('emerleite@gmail.com');
+    var url = gravatar.url({s: '200', r: 'pg', d: '404'});
     //returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
-    var secureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, true);
+    var secureUrl = gravatar.url({s: '100', r: 'x', d: 'retro'}, true);
     //returns https://secure.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
-    
+    gravatar.fetch(function(picture) {
+        //picture.data contains a Buffer with the picture.
+    });
+
 Running tests (3 ways)
 ----------------------
-$ npm test 
+$ npm test
 $ ./run-tests.js
 $ nodeunit test
 
@@ -52,6 +55,7 @@ Author
 ------
 
 * Emerson Macedo (<http://codificando.com/>)
+* Mathieu Lecarme
 
 License:
 --------

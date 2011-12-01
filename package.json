@@ -1,10 +1,10 @@
 { "name" : "gravatar"
 , "description" : "Gravatar Node.js library"
-, "keywords" : [ "gravatar", "avatar", "package.json" ]
-, "version" : "1.0.4"
-, "author" : "Emerson Macedo <emerleite@gmail.com>"
+, "keywords" : [ "gravatar", "avatar" ]
+, "version" : "2.0.0"
+, "author" : [ "Emerson Macedo <emerleite@gmail.com>", "Mathieu Lecarme <mathieu@garambrogne.net>"]
 , "repository" : { "type": "git"
-                , "url": "git://github.com/emerleite/node-gravatar.git" }
+                , "url": "git://github.com/athoune/node-gravatar.git" }
 , "devDependencies" : {
     "nodeunit" : "~0.6.2"
   }
