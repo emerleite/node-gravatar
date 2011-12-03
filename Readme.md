@@ -7,7 +7,7 @@ Dependencies
 ------------
 
 ### Runtime
-* Works with Node.js 0.4.X.
+* Works with Node.js 0.6.X.
 
 ### Development/Tests
 * nodeunit
@@ -43,9 +43,12 @@ Usage
 
 Running tests (3 ways)
 ----------------------
-$ npm test
-$ ./run-tests.js
-$ nodeunit test
+
+    $ npm test
+
+    $ ./run-tests.js
+
+    $ nodeunit test
 
 To-Do
 -----
