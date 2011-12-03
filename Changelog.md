@@ -1,3 +1,6 @@
+### 2.0.0
+- Gravatar is now an object
+- fetch the picture
 ### 1.0.4
 - Test script to avoid global nodeunit - Fix #4
 ### 1.0.3

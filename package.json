@@ -1,7 +1,7 @@
 { "name" : "gravatar"
 , "description" : "Gravatar Node.js library"
-, "keywords" : [ "gravatar", "avatar", "package.json" ]
-, "version" : "1.0.4"
+, "keywords" : [ "gravatar", "avatar" ]
+, "version" : "2.0.0"
 , "author" : "Emerson Macedo <emerleite@gmail.com>"
 , "repository" : { "type": "git"
                 , "url": "git://github.com/emerleite/node-gravatar.git" }

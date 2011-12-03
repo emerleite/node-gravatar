@@ -1,8 +1,8 @@
-var testCase = require('nodeunit').testCase
-  , url = require('url')
-  , gravatar = require('../lib/gravatar')
-  , baseURL = "http://www.gravatar.com/avatar/"
-  , baseSecureURL = "https://secure.gravatar.com/avatar/";
+var testCase = require('nodeunit').testCase,
+    url = require('url'),
+    gravatar = require('../lib/gravatar'),
+    baseURL = "http://www.gravatar.com/avatar/",
+    baseSecureURL = "https://secure.gravatar.com/avatar/";
 
 module.exports = testCase({
   'it should gererate correct uri given an email': function(test) {
@@ -28,5 +28,13 @@ module.exports = testCase({
     var gravatarURL = gravatar.url('emerleite@gmail.com', {}, true);
     test.equal(gravatar.url('emerleite@gmail.com', {}, true), baseSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
     test.done();
+  },
+  'it should fetch a picture': function(test) {
+    var g = new gravatar.Gravatar('emerleite@gmail.com');
+    g.fetch(function(picture) {
+        //It 's a JPEG aka JFIF file
+        test.equal(picture.data.toString('binary', 6, 10), 'JFIF');
+        test.done();
+    })
   }
 });
