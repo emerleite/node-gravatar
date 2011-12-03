@@ -32,6 +32,8 @@ module.exports = testCase({
   'it should fetch a picture': function(test) {
     var g = new gravatar.Gravatar('emerleite@gmail.com');
     g.fetch(function(picture) {
+        //It 's a JPEG aka JFIF file
+        test.equal(picture.data.toString('binary', 6, 10), 'JFIF');
         test.done();
     })
   }
