@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/emerleite/node-gravatar.png)](http://travis-ci.org/emerleite/node-gravatar)
+
 Node.js Gravatar library
 ========================
 A library to generate Gravatar URLs in Node.js
@@ -11,7 +13,8 @@ Dependencies
 * Works with Node.js 0.4.X too.
 
 ### Development/Tests
-* nodeunit
+* mocha
+* should.js
 
 Instalation
 -----------
@@ -41,8 +44,8 @@ Usage
 Running tests (3 ways)
 ----------------------
 $ npm test 
-$ ./run-tests.js
-$ nodeunit test
+$ mocha (installed global)
+$ node_modules/mocha/bin/mocha
 
 To-Do
 -----
