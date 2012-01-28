@@ -10,7 +10,7 @@
     "mocha" : "0.7.0",
     "should" : "0.4.2"
   },
-  "main": "index",
+  "main": "index.js",
   "scripts" : { "test" : "node_modules/mocha/bin/mocha -R spec" },
   "engines" : { "node" : ">=0.4.0" }
 }
