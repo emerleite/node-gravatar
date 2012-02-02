@@ -1,3 +1,5 @@
+### 1.0.5
+- Changed all tests to use mocha and should.js
 ### 1.0.4
 - Test script to avoid global nodeunit - Fix #4
 ### 1.0.3
