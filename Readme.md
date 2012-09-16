@@ -16,7 +16,7 @@ Dependencies
 * mocha
 * should.js
 
-Instalation
+Installation
 -----------
 > npm install gravatar
 
