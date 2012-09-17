@@ -38,4 +38,11 @@ describe('gravatar', function() {
     gravatar.profile_url('emerleite@gmail.com', {format:'qr'}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.qr");
     gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
   });
+
+  it('should get the profile', function(done){
+    gravatar.get_profile(gravatar.profile_url('emerleite@gmail.com', {}, true), function(error, profile){
+      JSON.parse(profile).entry[0].hash.should.be.equal("93e9084aa289b7f1f5e4ab6716a56c3b");
+      done();
+    });
+  });
 });
