@@ -29,4 +29,15 @@ describe('gravatar', function() {
     var gravatarURL = gravatar.url('emerleite@gmail.com', {}, true);
     gravatar.url('emerleite@gmail.com', {}, true).should.equal(baseSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
   });
+
+  it('should expose the base URLs', function () {
+    gravatar.httpsURL.should.be.equal(baseSecureURL);
+    gravatar.httpURL.should.be.equal(baseURL);
+  });
+
+  it('should allow for clobbering base URLs', function () {
+    var clobbered = gravatar.httpURL = 'http://foo.com/bar/';
+    var url = gravatar.url('EMERLEITE@gmAil.com');
+    url.should.be.equal(clobbered + '93e9084aa289b7f1f5e4ab6716a56c3b');
+  });
 });
