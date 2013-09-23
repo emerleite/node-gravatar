@@ -1,4 +1,4 @@
-{ 
+{
   "name" : "gravatar",
   "description" : "Gravatar Node.js library",
   "keywords" : [ "gravatar", "avatar", "package.json" ],
@@ -7,8 +7,8 @@
   "repository" : { "type": "git",
                    "url": "git://github.com/emerleite/node-gravatar.git" },
   "devDependencies" : {
-    "mocha" : "0.7.0",
-    "should" : "0.4.2"
+    "should": "~1.3.0",
+    "mocha": "~1.13.0"
   },
   "main": "index.js",
   "scripts" : { "test" : "node_modules/mocha/bin/mocha -R spec" },
