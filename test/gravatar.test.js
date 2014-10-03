@@ -29,4 +29,10 @@ describe('gravatar', function() {
     var gravatarURL = gravatar.url('emerleite@gmail.com', {}, true);
     gravatar.url('emerleite@gmail.com', {}, true).should.equal(baseSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
   });
+
+  it('should handle falsey values for the email property', function () {
+    gravatar.url(null).should.be.ok;
+    gravatar.url(undefined).should.be.ok;
+    gravatar.url('').should.be.ok;
+  });
 });
