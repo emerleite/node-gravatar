@@ -9,8 +9,7 @@ Dependencies
 ------------
 
 ### Runtime
-* Node 0.2.X+
-* Works with Node.js 0.4.X too.
+* Node 0.8.X+
 
 ### Development/Tests
 * mocha
@@ -26,10 +25,10 @@ Usage
     gravatar.url(email, options, https=false);
 
 ## Where:
-* email: 
+* email:
   The gravatar email
 * options:
-  Query string options. Ex: size or s, default or d, rating or r, forcedefault or f. 
+  Query string options. Ex: size or s, default or d, rating or r, forcedefault or f.
   Should be passed as an object. Ex: {s: 200, f: 'y', d: '404'}
 * https
   Define if will use secure gravatar. Default is false.
@@ -40,10 +39,10 @@ Usage
     //returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
     var secureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, true);
     //returns https://secure.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
-    
+
 Running tests (3 ways)
 ----------------------
-$ npm test 
+$ npm test
 $ mocha (installed global)
 $ node_modules/mocha/bin/mocha
 

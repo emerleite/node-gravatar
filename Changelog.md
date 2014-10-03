@@ -1,5 +1,7 @@
+### 1.1.0
+- Allow invalid email to prevent blows. Closes #8, #13
 ### 1.0.6
-- Compatibility issue fix #6 
+- Compatibility issue fix #6
 ### 1.0.5
 - Changed all tests to use mocha and should.js
 ### 1.0.4
