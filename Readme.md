@@ -22,7 +22,7 @@ Instalation
 Usage
 ------
     var gravatar = require('gravatar');
-    gravatar.url(email, options, https=false);
+    gravatar.url(email, options, protocol);
 
 ## Where:
 * email:
