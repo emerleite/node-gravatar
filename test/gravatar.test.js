@@ -3,17 +3,18 @@ var should = require('should')
   , gravatar = require('../lib/gravatar');
 
 describe('gravatar', function() {
-  var baseURL = "http://www.gravatar.com/avatar/";
+  var baseNoProtocolURL = "//www.gravatar.com/avatar/";
+  var baseUnsecureURL = "http://www.gravatar.com/avatar/";
   var baseSecureURL = "https://secure.gravatar.com/avatar/";
 
   it('should gererate correct uri given an email', function() {
-    gravatar.url('emerleite@gmail.com').should.be.equal(baseURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
-    gravatar.url('emerleite@yahoo.com.br').should.be.equal(baseURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
+    gravatar.url('emerleite@gmail.com').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
+    gravatar.url('emerleite@yahoo.com.br').should.be.equal(baseNoProtocolURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
   });
 
   it('should generate same uri ignoring case', function() {
-    gravatar.url('EMERLEITE@gmAil.com').should.be.equal(baseURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
-    gravatar.url('emerleite@YAHOO.com.BR').should.be.equal(baseURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
+    gravatar.url('EMERLEITE@gmAil.com').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
+    gravatar.url('emerleite@YAHOO.com.BR').should.be.equal(baseNoProtocolURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
   });
 
   it('should generate uri with user passed parameters', function() {
@@ -25,7 +26,12 @@ describe('gravatar', function() {
     queryString.d.should.equal('404');
   });
 
-  it('should allow https gravatar uri generation', function() {
+  it('should force http protocol on gravatar uri generation', function() {
+    gravatar.url('emerleite@gmail.com', {}, false).should.be.equal(baseUnsecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
+    gravatar.url('emerleite@yahoo.com.br', {}, false).should.be.equal(baseUnsecureURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
+  });
+
+  it('should force https protocol on gravatar uri generation', function() {
     var gravatarURL = gravatar.url('emerleite@gmail.com', {}, true);
     gravatar.url('emerleite@gmail.com', {}, true).should.equal(baseSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
   });
