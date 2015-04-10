@@ -1,3 +1,5 @@
+### 1.1.1
+- Allow no protocol URL generation too. Closes #15
 ### 1.1.0
 - Allow invalid email to prevent blows. Closes #8, #13
 ### 1.0.6

@@ -22,7 +22,7 @@ Instalation
 Usage
 ------
     var gravatar = require('gravatar');
-    gravatar.url(email, options, https=false);
+    gravatar.url(email, options, protocol);
 
 ## Where:
 * email:
@@ -30,13 +30,15 @@ Usage
 * options:
   Query string options. Ex: size or s, default or d, rating or r, forcedefault or f.
   Should be passed as an object. Ex: {s: 200, f: 'y', d: '404'}
-* https
-  Define if will use secure gravatar. Default is false.
+* protocol
+  Define if will use no protocol, http or https gravatar URL. Default is 'undefined', which generates URLs without protocol. True to force https and false to force http.
 
 ### Examples
     var gravatar = require('gravatar');
     var url = gravatar.url('emerleite@gmail.com', {s: '200', r: 'pg', d: '404'});
-    //returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
+    //returns //www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
+    var unsecureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, false);
+    //returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
     var secureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, true);
     //returns https://secure.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
 
