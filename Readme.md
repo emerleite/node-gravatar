@@ -44,9 +44,11 @@ Usage
 
 Running tests (3 ways)
 ----------------------
+```
 $ npm test
 $ mocha (installed global)
 $ node_modules/mocha/bin/mocha
+```
 
 To-Do
 -----
