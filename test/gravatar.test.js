@@ -5,7 +5,7 @@ var should = require('should')
 describe('gravatar', function() {
   var baseNoProtocolURL = "//www.gravatar.com/avatar/";
   var baseUnsecureURL = "http://www.gravatar.com/avatar/";
-  var baseSecureURL = "https://secure.gravatar.com/avatar/";
+  var baseSecureURL = "https://s.gravatar.com/avatar/";
 
   it('should gererate correct uri given an email', function() {
     gravatar.url('emerleite@gmail.com').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
