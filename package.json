@@ -12,5 +12,6 @@
   },
   "main": "index.js",
   "scripts" : { "test" : "node_modules/mocha/bin/mocha -R spec" },
+  "license" : "MIT",
   "engines" : { "node" : ">=0.8.0" }
 }
