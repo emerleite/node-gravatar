@@ -1,3 +1,5 @@
+### 1.2.0
+- According to https://en.gravatar.com/site/check/ https://s.gravatar.com/avatar/ is their preferred url.
 ### 1.1.1
 - Allow no protocol URL generation too. Closes #15
 ### 1.1.0
