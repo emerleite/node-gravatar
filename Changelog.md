@@ -1,3 +1,5 @@
+### 1.3.0
+- Implementing profiles (wlaurance - https://github.com/wlaurance)
 ### 1.2.0
 - According to https://en.gravatar.com/site/check/ https://s.gravatar.com/avatar/ is their preferred url.
 ### 1.1.1
