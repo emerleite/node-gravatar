@@ -6,6 +6,8 @@ describe('gravatar', function() {
   var baseNoProtocolURL = "//www.gravatar.com/avatar/";
   var baseUnsecureURL = "http://www.gravatar.com/avatar/";
   var baseSecureURL = "https://s.gravatar.com/avatar/";
+  var profileURL = "http://www.gravatar.com/";
+  var profileSecureURL = "https://secure.gravatar.com/";
 
   it('should gererate correct uri given an email', function() {
     gravatar.url('emerleite@gmail.com').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
@@ -40,5 +42,12 @@ describe('gravatar', function() {
     gravatar.url(null).should.be.ok;
     gravatar.url(undefined).should.be.ok;
     gravatar.url('').should.be.ok;
+  });
+
+  it('should generate profile url', function() {
+    gravatar.profile_url('emerleite@gmail.com', {}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
+    gravatar.profile_url('emerleite@gmail.com', {format:'xml'}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.xml");
+    gravatar.profile_url('emerleite@gmail.com', {format:'qr'}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.qr");
+    gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
   });
 });
