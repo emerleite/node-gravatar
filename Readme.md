@@ -17,12 +17,17 @@ Dependencies
 
 Instalation
 -----------
-> npm install gravatar
+```sh
+$ npm install gravatar
+```
 
 Usage
 ------
-    var gravatar = require('gravatar');
-    gravatar.url(email, options, protocol);
+
+```javascript
+var gravatar = require('gravatar');
+gravatar.url(email, options, protocol);
+```
 
 ## Where:
 * email:
@@ -47,7 +52,7 @@ var secureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro
 
 Running tests (3 ways)
 ----------------------
-```
+```sh
 $ npm test
 $ mocha (installed global)
 $ node_modules/mocha/bin/mocha
@@ -60,7 +65,7 @@ To-Do
 Author
 ------
 
-* Emerson Macedo (<http://codificando.com/>)
+* Emerson Macedo (<http://emerleite.com/>)
 
 License:
 --------
