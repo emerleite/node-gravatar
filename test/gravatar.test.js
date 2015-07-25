@@ -19,6 +19,11 @@ describe('gravatar', function() {
     gravatar.url('emerleite@YAHOO.com.BR').should.be.equal(baseNoProtocolURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
   });
 
+  it('should detect MD5 hashes and not hash them again', function() {
+    gravatar.url('93e9084aa289b7f1f5e4ab6716a56c3b').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
+    gravatar.url('93E9084AA289B7F1F5E4AB6716A56C3B').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
+  });
+
   it('should generate uri with user passed parameters', function() {
     var gravatarURL = gravatar.url('emerleite@gmail.com', { s: '200', f: 'y', r: 'g', d: '404'});
     var queryString = url.parse(gravatarURL, true).query;
