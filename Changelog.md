@@ -1,3 +1,5 @@
+### 1.3.1
+- Enhancement: Detect MD5 hashes and not hash them again (opatut)
 ### 1.3.0
 - Implementing profiles (wlaurance - https://github.com/wlaurance)
 ### 1.2.0
