@@ -1,6 +1,7 @@
 var should = require('should')
   , url = require('url')
-  , gravatar = require('../lib/gravatar');
+  , nixt = require("nixt")
+  , gravatar = require('../lib/gravatar')
 
 describe('gravatar', function() {
   var baseNoProtocolURL = "//www.gravatar.com/avatar/";
@@ -56,3 +57,21 @@ describe('gravatar', function() {
     gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
   });
 });
+
+describe("CLI", function() {
+
+  it("accepts an email argument and writes gravatar URL to STDOUT", function(done) {
+    nixt()
+      .run('./cli.js zeke@sikelianos.com')
+      .stdout('https://s.gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?size=500&default=retro')
+      .end(done)
+  })
+
+  it("outputs usage if no arg is present", function(done) {
+    nixt()
+      .run('./cli.js')
+      .stdout(/Usage/)
+      .end(done)
+  })
+
+})
