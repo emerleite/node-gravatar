@@ -50,6 +50,18 @@ var secureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro
 //returns https://s.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
 ```
 
+CLI Usage
+---------
+
+`gravatar` includes a simple command line interface. To use it, install globally:
+
+```sh
+npm i -g gravatar
+
+gravatar somebody@example.com
+```
+
+
 Running tests (3 ways)
 ----------------------
 ```sh

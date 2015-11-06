@@ -1,17 +1,31 @@
 {
-  "name" : "gravatar",
-  "description" : "Gravatar Node.js library",
-  "keywords" : [ "gravatar", "avatar", "package.json" ],
-  "version" : "1.3.1",
-  "author" : "Emerson Macedo <emerleite@gmail.com>",
-  "repository" : { "type": "git",
-                   "url": "git://github.com/emerleite/node-gravatar.git" },
-  "devDependencies" : {
-    "mocha" : "1.21.4",
-    "should" : "4.0.4"
+  "name": "gravatar",
+  "description": "Gravatar Node.js library",
+  "keywords": [
+    "gravatar",
+    "avatar",
+    "package.json"
+  ],
+  "version": "1.3.1",
+  "author": "Emerson Macedo <emerleite@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/emerleite/node-gravatar.git"
+  },
+  "devDependencies": {
+    "mocha": "1.21.4",
+    "nixt": "^0.4.1",
+    "should": "4.0.4"
   },
   "main": "index.js",
-  "scripts" : { "test" : "node_modules/mocha/bin/mocha -R spec" },
-  "license" : "MIT",
-  "engines" : { "node" : ">=0.8.0" }
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha -R spec"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "bin": {
+    "gravatar": "cli.js"
+  }
 }
