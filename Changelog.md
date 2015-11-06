@@ -1,3 +1,5 @@
+### 1.4.0
+- Basic CLI (zeke - https://github.com/zeke)
 ### 1.3.1
 - Enhancement: Detect MD5 hashes and not hash them again (opatut)
 ### 1.3.0
