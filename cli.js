@@ -10,5 +10,5 @@ if (!email) {
 }
 
 process.stdout.write(
-  gravatar.url(email, {size: '500', default: 'retro'}, true)
+  gravatar.url(email, {size: '500', default: 'retro'}, true) + '\n'
 )
