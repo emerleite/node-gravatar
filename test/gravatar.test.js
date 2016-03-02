@@ -13,6 +13,7 @@ describe('gravatar', function() {
   it('should gererate correct uri given an email', function() {
     gravatar.url('emerleite@gmail.com').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
     gravatar.url('emerleite@yahoo.com.br').should.be.equal(baseNoProtocolURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
+    gravatar.url('93E9084AA289B7F1F5E4AB6716A56C3B@gmail.com').should.be.equal(baseNoProtocolURL + "45503aaa7bc259c0ef5bba9997b77875");
   });
 
   it('should generate same uri ignoring case', function() {
