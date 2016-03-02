@@ -34,7 +34,7 @@ gravatar.url(email, options, protocol);
   The gravatar email
 * options:
   Query string options. Ex: size or s, default or d, rating or r, forcedefault or f.
-  Should be passed as an object. Ex: {s: 200, f: 'y', d: '404'}
+  Should be passed as an object. Ex: {s: '200', f: 'y', d: '404'}
 * protocol
   Define if will use no protocol, http or https gravatar URL. Default is 'undefined', which generates URLs without protocol. True to force https and false to force http.
 
