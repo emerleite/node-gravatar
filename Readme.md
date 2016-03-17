@@ -26,28 +26,54 @@ Usage
 
 ```javascript
 var gravatar = require('gravatar');
+
+gravatar.url(email);
+gravatar.url(email, options);
 gravatar.url(email, options, protocol);
+
+gravatar.profile_url(email);
+gravatar.profile_url(email, options);
+gravatar.profile_url(email, options, protocol);
 ```
 
 ## Where:
-* email:
+* `email`:
   The gravatar email
-* options:
-  Query string options. Ex: size or s, default or d, rating or r, forcedefault or f.
-  Should be passed as an object. Ex: {s: '200', f: 'y', d: '404'}
-* protocol
+* `options`:
+  Query string options. Ex: `size` or `s`, `default` or `d`, `rating` or `r`, `forcedefault` or `f`.
+  Additional options not passed as a query string:
+  `protocol` (e.g. `"http"` or `"https"`) and `format` (only for `profile_url`, e.g. `"xml"`, `"qr"`,
+  by default it is `"json"`)
+  Should be passed as an object. Ex: `{s: '200', f: 'y', d: '404'}`
+* `protocol`
   Define if will use no protocol, http or https gravatar URL. Default is 'undefined', which generates URLs without protocol. True to force https and false to force http.
+  It can also be set as `protocol` in `options` - see above.
 
 ### Examples
 
 ```javascript
 var gravatar = require('gravatar');
+
 var url = gravatar.url('emerleite@gmail.com', {s: '200', r: 'pg', d: '404'});
 //returns //www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
+
 var unsecureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, false);
 //returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
+
 var secureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, true);
 //returns https://s.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
+
+var httpUrl = gravatar.url('emerleite@gmail.com', {protocol: 'http', s: '100'});
+//returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100
+
+var httpsUrl = gravatar.url('emerleite@gmail.com', {protocol: 'https', s: '100'});
+//returns https://s.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100
+
+var profile1 = gravatar.profile_url('emerleite@gmail.com', {protocol: 'https'});
+//returns https://secure.gravatar.com/93e9084aa289b7f1f5e4ab6716a56c3b.json
+
+var profile2 = gravatar.profile_url('emerleite@gmail.com', {protocol: 'http', format:'qr'});
+//returns http://www.gravatar.com/93e9084aa289b7f1f5e4ab6716a56c3b.qr
 ```
 
 CLI Usage
