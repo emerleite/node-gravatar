@@ -1,3 +1,7 @@
+# 1.5.0
+
+    * New way to specify the protocol in the `options` object (rsp - https://github.com/rsp)
+
 # 1.4.0
 
     * Basic CLI (zeke - https://github.com/zeke)
