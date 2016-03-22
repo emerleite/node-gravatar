@@ -56,6 +56,29 @@ describe('gravatar', function() {
     gravatar.profile_url('emerleite@gmail.com', {format:'qr'}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.qr");
     gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
   });
+
+  it('should force http protocol on gravatar uri generation via options', function() {
+    gravatar.url('emerleite@gmail.com', {protocol: 'http'}).should.be.equal(baseUnsecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
+    gravatar.url('emerleite@yahoo.com.br', {protocol: 'http'}).should.be.equal(baseUnsecureURL + "6c47672b0d58bd6aae4fa70920cb3ee4");
+  });
+
+  it('should force https protocol on gravatar uri generation via options', function() {
+    gravatar.url('emerleite@gmail.com', {protocol: 'https'}).should.equal(baseSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
+  });
+
+  it('should generate uri with user passed parameters and protocol in options', function() {
+    var gravatarURL = gravatar.url('emerleite@gmail.com', {protocol: 'https', s: '200', f: 'y', r: 'g', d: '404'});
+    var queryString = url.parse(gravatarURL, true).query;
+    queryString.should.eql({s: '200', f: 'y', r: 'g', d: '404'});
+  });
+
+  it('should generate profile url with protocol in options', function() {
+    gravatar.profile_url('emerleite@gmail.com', {protocol: 'https'}).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
+    gravatar.profile_url('emerleite@gmail.com', {protocol: 'https', format:'xml'}).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.xml");
+    gravatar.profile_url('emerleite@gmail.com', {protocol: 'http', format:'qr'}).should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.qr");
+    gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
+  });
+
 });
 
 describe("CLI", function() {
