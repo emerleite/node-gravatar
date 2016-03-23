@@ -1,3 +1,7 @@
+# 1.5.1
+
+    * Fix a memory leak. Refs #30 (jefflembeck - https://github.com/jefflembeck)
+
 # 1.5.0
 
     * New way to specify the protocol in the `options` object (rsp - https://github.com/rsp)
