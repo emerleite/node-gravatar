@@ -1,3 +1,7 @@
+# 1.5.2
+
+    * Support email with hash behind at symbol (lindell - https://github.com/lindell)
+
 # 1.5.1
 
     * Fix a memory leak. Refs #30 (jefflembeck - https://github.com/jefflembeck)
