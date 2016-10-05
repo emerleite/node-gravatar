@@ -9,6 +9,7 @@ describe('gravatar', function() {
   var baseSecureURL = "https://s.gravatar.com/avatar/";
   var profileURL = "http://www.gravatar.com/";
   var profileSecureURL = "https://secure.gravatar.com/";
+  var unspecifiedHash = 'd415f0e30c471dfdd9bc4f827329ef48';
 
   it('should gererate correct uri given an email', function() {
     gravatar.url('emerleite@gmail.com').should.be.equal(baseNoProtocolURL + "93e9084aa289b7f1f5e4ab6716a56c3b");
@@ -51,11 +52,22 @@ describe('gravatar', function() {
     gravatar.url('').should.be.ok;
   });
 
+  it('should handle non string values for the email property', function () {
+    gravatar.url({}, {}, true).should.equal(baseSecureURL + unspecifiedHash);
+    gravatar.url(3, {}, true).should.equal(baseSecureURL + unspecifiedHash);
+    gravatar.url(true, {}, true).should.equal(baseSecureURL + unspecifiedHash);
+  });
+
   it('should generate profile url', function() {
     gravatar.profile_url('emerleite@gmail.com', {}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
     gravatar.profile_url('emerleite@gmail.com', {format:'xml'}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.xml");
     gravatar.profile_url('emerleite@gmail.com', {format:'qr'}, true).should.equal(profileSecureURL + "93e9084aa289b7f1f5e4ab6716a56c3b.qr");
     gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
+  });
+
+  it('should generate unspecified profile url when email is null', function() {
+    gravatar.profile_url(null, {}, true).should.equal(profileSecureURL + unspecifiedHash + ".json");
+    gravatar.profile_url(undefined, {}, true).should.equal(profileSecureURL + unspecifiedHash + ".json");
   });
 
   it('should force http protocol on gravatar uri generation via options', function() {
