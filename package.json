@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git://github.com/emerleite/node-gravatar.git"
   },
+  "dependencies": {
+    "blueimp-md5": "^2.3.0",
+    "querystring": "0.2.0"
+  },
   "devDependencies": {
     "mocha": "1.21.4",
     "nixt": "^0.4.1",
