@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "blueimp-md5": "^2.3.0",
-    "querystring": "0.2.0"
+    "email-validator": "^1.0.7",
+    "querystring": "0.2.0",
+    "yargs": "^6.0.0"
   },
   "devDependencies": {
     "mocha": "1.21.4",
