@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/emerleite/node-gravatar.png)](http://travis-ci.org/emerleite/node-gravatar)
+[![Build Status](https://secure.travis-ci.org/emerleite/node-gravatar.svg)](http://travis-ci.org/emerleite/node-gravatar)
 
 Node.js Gravatar library
 ========================
