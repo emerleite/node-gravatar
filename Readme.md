@@ -84,7 +84,15 @@ CLI Usage
 ```sh
 npm i -g gravatar
 
+gravatar -h
 gravatar somebody@example.com
+
+gravatar avatar -h
+gravatar avatar somebody@example.com
+
+gravatar profile -h
+gravatar profile somebody@example.com
+
 ```
 
 
