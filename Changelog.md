@@ -1,3 +1,9 @@
+# 1.6.0
+
+    * New CLI API. `gravatar avatar` and `gravatar profile`, instead of only `gravatar`. (lwhiteley - layton.whiteley@gmail.com)
+    * Suport Browser usage (goatandsheep)
+    * Fix: handle null email case for profile_url (lwhiteley - layton.whiteley@gmail.com)
+
 # 1.5.2
 
     * Support email with hash behind at symbol (lindell - https://github.com/lindell)
