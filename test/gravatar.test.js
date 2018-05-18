@@ -82,7 +82,10 @@ describe('gravatar', function() {
   it('should generate uri with user passed parameters and protocol in options', function() {
     var gravatarURL = gravatar.url('emerleite@gmail.com', {protocol: 'https', s: '200', f: 'y', r: 'g', d: '404'});
     var queryString = url.parse(gravatarURL, true).query;
-    queryString.should.eql({s: '200', f: 'y', r: 'g', d: '404'});
+    queryString.s.should.equal('200');
+    queryString.f.should.equal('y');
+    queryString.r.should.equal('g');
+    queryString.d.should.equal('404');
   });
 
   it('should generate profile url with protocol in options', function() {
