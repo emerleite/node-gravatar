@@ -1,3 +1,9 @@
+# 1.7.0
+    * yarn support
+    * Node 8+ compatibility
+    * Upgraded deps
+    * Added npm package-lock to project
+
 # 1.6.0
 
     * New CLI API. `gravatar avatar` and `gravatar profile`, instead of only `gravatar`. (lwhiteley - layton.whiteley@gmail.com)
