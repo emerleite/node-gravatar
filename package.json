@@ -6,7 +6,7 @@
     "avatar",
     "package.json"
   ],
-  "version": "1.6.0",
+  "version": "1.7.0",
   "author": "Emerson Macedo <emerleite@gmail.com>",
   "repository": {
     "type": "git",
@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "blueimp-md5": "^2.3.0",
-    "email-validator": "^1.0.7",
+    "email-validator": "^2.0.3",
     "querystring": "0.2.0",
-    "yargs": "^6.0.0"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "mocha": "1.21.4",
