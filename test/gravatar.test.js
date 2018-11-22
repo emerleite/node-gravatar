@@ -95,6 +95,16 @@ describe('gravatar', function() {
     gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + "93e9084aa289b7f1f5e4ab6716a56c3b.json");
   });
 
+  it('should generate profile url with cdn in options', function() {
+    var cdn = 'http://cdn-gravatar.wuweixing.com'
+    gravatar.profile_url('emerleite@gmail.com', {cdn: cdn}).should.equal(cdn + "/93e9084aa289b7f1f5e4ab6716a56c3b.json");
+    gravatar.profile_url('emerleite@gmail.com', {cdn: cdn, format:'xml'}).should.equal(cdn + "/93e9084aa289b7f1f5e4ab6716a56c3b.xml");
+    gravatar.profile_url('emerleite@gmail.com', {cdn: cdn, format:'qr'}).should.equal(cdn + "/93e9084aa289b7f1f5e4ab6716a56c3b.qr");
+    gravatar.url({}, {cdn: cdn}, true).should.equal(cdn + '/avatar/'+ unspecifiedHash);
+    gravatar.url(3, {cdn: cdn}, true).should.equal(cdn + '/avatar/'+ unspecifiedHash);
+    gravatar.url(true, {cdn: cdn}, true).should.equal(cdn + '/avatar/' + unspecifiedHash);
+  });
+
 });
 
 describe("CLI", function() {
