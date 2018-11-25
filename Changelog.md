@@ -1,3 +1,6 @@
+# 1.8.0
+    * Allows pass `cdn` information when generating gravatar url (sqlwwx)
+
 # 1.7.0
     * yarn support
     * Node 8+ compatibility
