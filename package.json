@@ -15,6 +15,14 @@
   "dependencies": {
     "blueimp-md5": "^2.3.0",
     "email-validator": "^2.0.3",
+    "eslint": "^5.16.0",
+    "eslint-config-semistandard": "^13.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "path": "^0.12.7",
     "querystring": "0.2.0",
     "yargs": "^11.0.0"
   },
@@ -25,6 +33,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "node_modules/mocha/bin/mocha -R spec"
   },
   "license": "MIT",
