@@ -1,15 +1,21 @@
-/* eslint-disable */
-const should = require('should');
-const url = require('url');
+'use strict';
+
+/* eslint-env mocha */
+
+require('should');
+const { URL } = require('url');
+const gravatar = require('..');
 const nixt = require('nixt');
-const gravatar = require('../lib/gravatar');
+const normalizeUrl = require('normalize-url');
+
+const parseUrl = url => new URL(normalizeUrl(url));
 
 describe('gravatar', function () {
-  const baseNoProtocolURL = '//www.gravatar.com/avatar/';
-  const baseUnsecureURL = 'http://www.gravatar.com/avatar/';
-  const baseSecureURL = 'https://s.gravatar.com/avatar/';
-  const profileURL = 'http://www.gravatar.com/';
-  const profileSecureURL = 'https://secure.gravatar.com/';
+  const baseNoProtocolURL = '//gravatar.com/avatar/';
+  const baseUnsecureURL = 'http://gravatar.com/avatar/';
+  const baseSecureURL = 'https://gravatar.com/avatar/';
+  const profileURL = 'http://gravatar.com/';
+  const profileSecureURL = 'https://gravatar.com/';
   const unspecifiedHash = 'd415f0e30c471dfdd9bc4f827329ef48';
 
   it('should gererate correct uri given an email', function () {
@@ -30,11 +36,11 @@ describe('gravatar', function () {
 
   it('should generate uri with user passed parameters', function () {
     const gravatarURL = gravatar.url('emerleite@gmail.com', { s: '200', f: 'y', r: 'g', d: '404' });
-    const queryString = url.parse(gravatarURL, true).query;
-    queryString.s.should.equal('200');
-    queryString.f.should.equal('y');
-    queryString.r.should.equal('g');
-    queryString.d.should.equal('404');
+    const { searchParams } = parseUrl(gravatarURL);
+    searchParams.get('s').should.equal('200');
+    searchParams.get('f').should.equal('y');
+    searchParams.get('r').should.equal('g');
+    searchParams.get('d').should.equal('404');
   });
 
   it('should force http protocol on gravatar uri generation', function () {
@@ -48,9 +54,11 @@ describe('gravatar', function () {
   });
 
   it('should handle falsey values for the email property', function () {
+    /* eslint-disable no-unused-expressions */
     gravatar.url(null).should.be.ok;
     gravatar.url(undefined).should.be.ok;
     gravatar.url('').should.be.ok;
+    /* eslint-enable */
   });
 
   it('should handle non string values for the email property', function () {
@@ -82,11 +90,11 @@ describe('gravatar', function () {
 
   it('should generate uri with user passed parameters and protocol in options', function () {
     const gravatarURL = gravatar.url('emerleite@gmail.com', { protocol: 'https', s: '200', f: 'y', r: 'g', d: '404' });
-    const queryString = url.parse(gravatarURL, true).query;
-    queryString.s.should.equal('200');
-    queryString.f.should.equal('y');
-    queryString.r.should.equal('g');
-    queryString.d.should.equal('404');
+    const { searchParams } = parseUrl(gravatarURL);
+    searchParams.get('s').should.equal('200');
+    searchParams.get('f').should.equal('y');
+    searchParams.get('r').should.equal('g');
+    searchParams.get('d').should.equal('404');
   });
 
   it('should generate profile url with protocol in options', function () {
@@ -112,7 +120,7 @@ describe('CLI', function () {
     it('accepts an email argument with options and writes gravatar URL to STDOUT', function (done) {
       nixt()
         .run('./cli.js zeke@sikelianos.com -p https -s 500 -d retro')
-        .stdout('Gravatar (avatar):\nhttps://s.gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?default=retro&size=500')
+        .stdout('Gravatar (avatar):\nhttps://gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?default=retro&size=500')
         .end(done);
     });
     it('outputs usage if -h arg is present', function (done) {
@@ -127,7 +135,7 @@ describe('CLI', function () {
     it('accepts an email argument with options and writes gravatar URL to STDOUT', function (done) {
       nixt()
         .run('./cli.js avatar zeke@sikelianos.com -p https -s 500 -d retro')
-        .stdout('Gravatar (avatar):\nhttps://s.gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?default=retro&size=500')
+        .stdout('Gravatar (avatar):\nhttps://gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?default=retro&size=500')
         .end(done);
     });
   });
@@ -136,7 +144,7 @@ describe('CLI', function () {
     it('accepts an email argument with options and writes gravatar profile URL to STDOUT', function (done) {
       nixt()
         .run('./cli.js profile zeke@sikelianos.com -p https -c doSomething')
-        .stdout('Gravatar (profile):\nhttps://secure.gravatar.com/8f344b1c4bdcfc28bd848e97e94c3523.json?callback=doSomething')
+        .stdout('Gravatar (profile):\nhttps://gravatar.com/8f344b1c4bdcfc28bd848e97e94c3523.json?callback=doSomething')
         .end(done);
     });
   });

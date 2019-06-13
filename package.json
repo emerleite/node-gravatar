@@ -3,8 +3,7 @@
   "description": "Gravatar Node.js library",
   "keywords": [
     "gravatar",
-    "avatar",
-    "package.json"
+    "avatar"
   ],
   "version": "1.8.0",
   "author": "Emerson Macedo <emerleite@gmail.com>",
@@ -12,8 +11,14 @@
     "type": "git",
     "url": "git://github.com/emerleite/node-gravatar.git"
   },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
-    "blueimp-md5": "^2.3.0",
+    "normalize-url": "^4.3.0",
+    "yargs": "^13.2.4"
+  },
+  "devDependencies": {
     "email-validator": "^2.0.4",
     "eslint": "^5.16.0",
     "eslint-config-semistandard": "^13.0.0",
@@ -22,19 +27,20 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "path": "^0.12.7",
-    "querystring": "0.2.0",
-    "yargs": "^13.2.4"
-  },
-  "devDependencies": {
     "mocha": "6.1.4",
     "nixt": "^0.5.1",
+    "rollup": "^1.15.2",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.0.1",
     "should": "13.2.3"
   },
-  "main": "index.js",
+  "main": "lib/gravatar.js",
+  "module": "lib/gravatar.esm.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "node_modules/mocha/bin/mocha -R spec"
+    "build": "rollup -c rollup.config.js",
+    "pretest": "yarn run build",
+    "test": "mocha -R spec"
   },
   "license": "MIT",
   "engines": {
