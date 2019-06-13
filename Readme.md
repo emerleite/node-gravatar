@@ -1,83 +1,108 @@
 [![Build Status](https://secure.travis-ci.org/emerleite/node-gravatar.svg)](http://travis-ci.org/emerleite/node-gravatar)
 
-Node.js Gravatar library
-========================
-A library to generate Gravatar URLs in Node.js
-Based on gravatar specs - <http://en.gravatar.com/site/implement/hash/> and <http://en.gravatar.com/site/implement/images/>
+# Node.js Gravatar library
 
-Dependencies
-------------
+A library to generate Gravatar URLs in Node.js
+Based on gravatar specs - <https://en.gravatar.com/site/implement/hash/> and <https://en.gravatar.com/site/implement/images/>
+
+## Dependencies
 
 ### Runtime
-* Node 0.8.X+
+
+- Node `>= 0.8`
 
 ### Development/Tests
-* mocha
-* should.js
 
-Installation
------------
+- mocha
+- should.js
+
+## Installation
+
 ```sh
 $ npm install gravatar
 ```
 
-Usage
-------
+## Usage
 
 ```javascript
-var gravatar = require('gravatar');
+import gravatar from "gravatar";
 
 gravatar.url(email);
 gravatar.url(email, options);
 gravatar.url(email, options, protocol);
 
-gravatar.profile_url(email);
-gravatar.profile_url(email, options);
-gravatar.profile_url(email, options, protocol);
+gravatar.profileUrl(email);
+gravatar.profileUrl(email, options);
+gravatar.profileUrl(email, options, protocol);
 ```
 
 ## Where:
-* `email`:
+
+- `email`:
   The gravatar email
-* `options`:
+- `options`:
   Query string options. Ex: `size` or `s`, `default` or `d`, `rating` or `r`, `forcedefault` or `f`.
   Additional options not passed as a query string:
-  `protocol` (e.g. `"http"` or `"https"`) and `format` (only for `profile_url`, e.g. `"xml"`, `"qr"`,
+  `protocol` (e.g. `"http"` or `"https"`) and `format` (only for `profileUrl`, e.g. `"xml"`, `"qr"`,
   by default it is `"json"`)
   Should be passed as an object. Ex: `{s: '200', f: 'y', d: '404'}`
-* `protocol`
+- `protocol`
   Define if will use no protocol, http or https gravatar URL. Default is 'undefined', which generates URLs without protocol. True to force https and false to force http.
   It can also be set as `protocol` in `options` - see above.
 
 ### Examples
 
 ```javascript
-var gravatar = require('gravatar');
+import gravatar from "gravatar";
 
-var url = gravatar.url('emerleite@gmail.com', {s: '200', r: 'pg', d: '404'});
-//returns //www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
+const email = "emerleite@gmail.com";
 
-var unsecureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, false);
-//returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
+const url = gravatar.url(email, {
+  size: 200,
+  rating: "pg",
+  default: "404"
+});
+//=> //gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=200&rating=pg&default=404
 
-var secureUrl = gravatar.url('emerleite@gmail.com', {s: '100', r: 'x', d: 'retro'}, true);
-//returns https://s.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
+const unsecureUrl = gravatar.url(email, {
+  size: 100,
+  rating: "x",
+  default: "retro"
+}, false /* protocol=`http` */);
+//=> http://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100&rating=x&default=retro
 
-var httpUrl = gravatar.url('emerleite@gmail.com', {protocol: 'http', s: '100'});
-//returns http://www.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100
+const secureUrl = gravatar.url(email, {
+  size: 100,
+  rating: "x",
+  default: "retro"
+}, true /* protocol=`https` */);
+//=> https://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100&rating=x&default=retro
 
-var httpsUrl = gravatar.url('emerleite@gmail.com', {protocol: 'https', s: '100'});
-//returns https://s.gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100
+const httpUrl = gravatar.url(email, {
+  protocol: "http",
+  size: 100
+});
+//=> http://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100
 
-var profile1 = gravatar.profile_url('emerleite@gmail.com', {protocol: 'https'});
-//returns https://secure.gravatar.com/93e9084aa289b7f1f5e4ab6716a56c3b.json
+const httpsUrl = gravatar.url(email, {
+  protocol: "https",
+  size: 100
+});
+//=> https://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100
 
-var profile2 = gravatar.profile_url('emerleite@gmail.com', {protocol: 'http', format:'qr'});
-//returns http://www.gravatar.com/93e9084aa289b7f1f5e4ab6716a56c3b.qr
+const profile1 = gravatar.profileUrl(email, {
+  protocol: "https"
+});
+//=> https://secure.gravatar.com/93e9084aa289b7f1f5e4ab6716a56c3b.json
+
+const profile2 = gravatar.profileUrl(email, {
+  protocol: "http",
+  format: "qr"
+});
+//=> http://gravatar.com/93e9084aa289b7f1f5e4ab6716a56c3b.qr
 ```
 
-CLI Usage
----------
+## CLI Usage
 
 `gravatar` includes a simple command line interface. To use it, install globally:
 
@@ -95,26 +120,21 @@ gravatar profile somebody@example.com
 
 ```
 
+## Running tests
 
-Running tests (3 ways)
-----------------------
 ```sh
 $ npm test
-$ mocha (installed global)
-$ node_modules/mocha/bin/mocha
 ```
 
-To-Do
------
-* see (<https://github.com/emerleite/node-gravatar/issues>)
+## To-Do
 
-Author
-------
+- see (<https://github.com/emerleite/node-gravatar/issues>)
 
-* Emerson Macedo (<http://emerleite.com/>)
+## Author
 
-License:
---------
+- Emerson Macedo (<http://emerleite.com/>)
+
+## License:
 
 (The MIT License)
 
