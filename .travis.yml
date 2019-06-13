@@ -1,11 +1,13 @@
 language: node_js
-
-script:
-  - yarn workspaces run lint
-  - yarn workspaces run test
-
 node_js:
   - 8
   - 10
   - node
   - lts/*
+
+before_install:
+  - npm install -g yarn
+
+script:
+  - yarn workspaces run lint
+  - yarn workspaces run test
