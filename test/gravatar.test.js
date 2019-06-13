@@ -120,7 +120,7 @@ describe('CLI', function () {
     it('accepts an email argument with options and writes gravatar URL to STDOUT', function (done) {
       nixt()
         .run('./cli.js zeke@sikelianos.com -p https -s 500 -d retro')
-        .stdout('Gravatar (avatar):\nhttps://gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?default=retro&size=500')
+        .stdout('Gravatar (avatar):\nhttps://gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?size=500&default=retro')
         .end(done);
     });
     it('outputs usage if -h arg is present', function (done) {
@@ -135,7 +135,7 @@ describe('CLI', function () {
     it('accepts an email argument with options and writes gravatar URL to STDOUT', function (done) {
       nixt()
         .run('./cli.js avatar zeke@sikelianos.com -p https -s 500 -d retro')
-        .stdout('Gravatar (avatar):\nhttps://gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?default=retro&size=500')
+        .stdout('Gravatar (avatar):\nhttps://gravatar.com/avatar/8f344b1c4bdcfc28bd848e97e94c3523?size=500&default=retro')
         .end(done);
     });
   });

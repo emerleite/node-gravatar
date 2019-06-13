@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git://github.com/emerleite/node-gravatar.git"
   },
+  "homepage": "https://github.com/emerleite/node-gravatar",
   "files": [
     "lib"
   ],
