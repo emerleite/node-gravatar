@@ -19,6 +19,9 @@
     "yargs": "^13.2.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "email-validator": "^2.0.4",
     "eslint": "^5.16.0",
     "eslint-config-semistandard": "^13.0.0",
@@ -30,6 +33,7 @@
     "mocha": "6.1.4",
     "nixt": "^0.5.1",
     "rollup": "^1.15.2",
+    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.1",
     "should": "13.2.3"

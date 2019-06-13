@@ -1,3 +1,4 @@
+import babel from 'rollup-plugin-babel';
 import commonJs from 'rollup-plugin-commonjs';
 import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
@@ -7,7 +8,8 @@ const baseConfig = {
   input: 'src/gravatar.js',
   plugins: [
     resolve({ preferBuiltins: true }),
-    commonJs()
+    commonJs(),
+    babel()
   ]
 };
 

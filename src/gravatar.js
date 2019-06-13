@@ -5,7 +5,6 @@ import { URLSearchParams } from 'url';
 
 const isBoolean = arg => typeof arg === 'boolean';
 const isString = arg => typeof arg === 'string';
-const isUndefined = arg => typeof arg === 'undefined';
 const md5 = val => crypto.createHash('md5').update(val, 'utf8').digest('hex');
 
 const BASE_URL = '//gravatar.com';
@@ -23,19 +22,21 @@ function getHash(email) {
   return md5(email);
 }
 
-function getQuery({ format, protocol, cdn, ...options } = {}) {
+function getQuery({ cdn, format, protocol, ...options } = {}) {
   const entries = Object.entries(options);
   if (!entries.length) return '';
   const searchParams = new URLSearchParams(entries);
   return `?${searchParams}`;
 }
-function url(email, { cdn, ...options } = {}, protocol = proto(options)) {
+
+function url(email, options = {}, protocol = proto(options)) {
+  const { cdn } = options;
   let url;
   if (cdn) {
     url = `${cdn}/avatar`;
   } else {
     url = `${BASE_URL}/avatar`;
-    if (!isUndefined(protocol)) {
+    if (isBoolean(protocol)) {
       url = normalizeUrl(url, { forceHttps: protocol });
     }
   }
@@ -44,14 +45,13 @@ function url(email, { cdn, ...options } = {}, protocol = proto(options)) {
   return `${url}/${hash}${query}`;
 }
 
-function profileUrl(email, { cdn, format = 'json', ...options } = {}, protocol = proto(options)) {
+function profileUrl(email, options = {}, protocol = proto(options)) {
+  const { cdn, format = 'json' } = options;
   let url = '';
   if (cdn) {
     url = `${cdn}`;
   } else {
-    url = BASE_URL;
-    const defaultProtocol = protocol ? 'https:' : 'http:';
-    url = normalizeUrl(url, { defaultProtocol });
+    url = normalizeUrl(BASE_URL, { forceHttps: protocol });
   }
   const hash = getHash(email);
   const query = getQuery(options);
