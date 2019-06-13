@@ -1,8 +1,8 @@
 language: node_js
 
 script:
-  - yarn run lint
-  - yarn test
+  - yarn workspaces run lint
+  - yarn workspaces run test
 
 node_js:
   - 8

@@ -2,8 +2,8 @@
 
 'use strict';
 
-const gravatar = require('./lib/gravatar');
 const emailValidator = require('email-validator');
+const gravatar = require('gravatar');
 const pkg = require('./package.json');
 
 const options = {
@@ -24,13 +24,13 @@ const options = {
 };
 
 const profileOptions = {
-  format: {
-    alias: 'f',
+  f: {
+    alias: 'format',
     describe: 'format of the requested profile url',
     choices: ['json', 'xml', 'qr', 'php', 'vcf']
   },
-  callback: {
-    alias: 'c',
+  c: {
+    alias: 'callback',
     describe: 'name of a callback function when using json profile url eg. doSomething'
   }
 };
@@ -40,7 +40,10 @@ const footer = `Useful Links:
   - https://en.gravatar.com/site/implement/profiles/
   - ${pkg.homepage}`;
 
-const getOptions = argv => pick(argv, [...Object.keys(options), ...Object.keys(profileOptions)]);
+const getOptions = argv => pick(argv, [
+  ...Object.values(options).map(({ alias }) => alias),
+  ...Object.values(profileOptions).map(({ alias }) => alias)
+]);
 
 const setUsage = function (yargs) {
   return yargs

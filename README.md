@@ -9,7 +9,7 @@ Based on gravatar specs - <https://en.gravatar.com/site/implement/hash/> and <ht
 
 ### Runtime
 
-- Node `>= 0.8`
+- Node `>=8`
 
 ### Development/Tests
 
@@ -107,7 +107,7 @@ const profile2 = gravatar.profileUrl(email, {
 `gravatar` includes a simple command line interface. To use it, install globally:
 
 ```sh
-npm i -g gravatar
+npm i -g gravatar-cli
 
 gravatar -h
 gravatar somebody@example.com
@@ -117,13 +117,12 @@ gravatar avatar somebody@example.com
 
 gravatar profile -h
 gravatar profile somebody@example.com
-
 ```
 
 ## Running tests
 
 ```sh
-$ npm test
+$ yarn workspaces run test
 ```
 
 ## To-Do

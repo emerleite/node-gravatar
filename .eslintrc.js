@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   extends: 'semistandard',
   rules: {
     'prefer-const': 'error',

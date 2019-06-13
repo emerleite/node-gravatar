@@ -1,0 +1,40 @@
+{
+  "name": "gravatar-cli",
+  "description": "Gravatar Node.js CLI",
+  "keywords": [
+    "gravatar",
+    "avatar",
+    "cli"
+  ],
+  "version": "1.8.0",
+  "author": "Emerson Macedo <emerleite@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/emerleite/node-gravatar.git"
+  },
+  "homepage": "https://github.com/emerleite/node-gravatar",
+  "files": [
+    "cli.js"
+  ],
+  "dependencies": {
+    "gravatar": "^1.8.0"
+  },
+  "devDependencies": {
+    "email-validator": "^2.0.4",
+    "eslint": "^5.16.0",
+    "mocha": "6.1.4",
+    "nixt": "^0.5.1",
+    "should": "13.2.3"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha -R spec"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "bin": {
+    "gravatar": "cli.js"
+  }
+}
