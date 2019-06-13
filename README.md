@@ -36,7 +36,7 @@ gravatar.profileUrl(email, options);
 gravatar.profileUrl(email, options, protocol);
 ```
 
-## Where:
+## Parameters
 
 - `email`:
   The gravatar email
@@ -68,14 +68,14 @@ const unsecureUrl = gravatar.url(email, {
   size: 100,
   rating: "x",
   default: "retro"
-}, false /* protocol=`http` */);
+}, false /* [protocol="http"] */);
 //=> http://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100&rating=x&default=retro
 
 const secureUrl = gravatar.url(email, {
   size: 100,
   rating: "x",
   default: "retro"
-}, true /* protocol=`https` */);
+}, true /* [protocol="https"] */);
 //=> https://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100&rating=x&default=retro
 
 const httpUrl = gravatar.url(email, {
@@ -133,7 +133,7 @@ $ yarn workspaces run test
 
 - Emerson Macedo (<http://emerleite.com/>)
 
-## License:
+## License
 
 (The MIT License)
 
