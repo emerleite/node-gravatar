@@ -13,7 +13,8 @@
   },
   "homepage": "https://github.com/emerleite/node-gravatar",
   "files": [
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "dependencies": {
     "normalize-url": "^4.3.0"
@@ -22,15 +23,19 @@
     "eslint": "^5.16.0",
     "mocha": "6.1.4",
     "rollup": "^1.15.2",
-    "should": "13.2.3"
+    "rollup-plugin-typescript2": "^0.21.1",
+    "should": "13.2.3",
+    "tsd": "^0.7.3",
+    "typescript": "^3.5.2"
   },
   "main": "lib/gravatar.js",
   "module": "lib/gravatar.esm.js",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "eslint .",
     "build": "rollup -c rollup.config.js",
     "pretest": "yarn run build",
-    "test": "mocha -R spec"
+    "test": "mocha -R spec && tsd"
   },
   "license": "MIT",
   "engines": {
