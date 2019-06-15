@@ -17,7 +17,9 @@
     "cli.js"
   ],
   "dependencies": {
-    "gravatar": "^1.8.0"
+    "email-validator": "^2.0.4",
+    "gravatar": "^1.8.0",
+    "yargs": "^13.2.4"
   },
   "devDependencies": {
     "@types/yargs": "^13.0.0",
