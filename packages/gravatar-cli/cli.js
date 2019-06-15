@@ -6,6 +6,7 @@ const emailValidator = require('email-validator');
 const gravatar = require('gravatar');
 const pkg = require('./package.json');
 
+/** @type {import('yargs').CommandBuilder} */
 const options = {
   s: {
     alias: 'size',
@@ -23,11 +24,13 @@ const options = {
   }
 };
 
+/** @type {import('yargs').CommandBuilder} */
 const profileOptions = {
   f: {
     alias: 'format',
     describe: 'format of the requested profile url',
-    choices: ['json', 'xml', 'qr', 'php', 'vcf']
+    choices: ['json', 'xml', 'qr', 'php', 'vcf'],
+    default: 'json'
   },
   c: {
     alias: 'callback',

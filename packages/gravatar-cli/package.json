@@ -20,6 +20,7 @@
     "gravatar": "^1.8.0"
   },
   "devDependencies": {
+    "@types/yargs": "^13.0.0",
     "email-validator": "^2.0.4",
     "eslint": "^5.16.0",
     "mocha": "6.1.4",

@@ -14,6 +14,7 @@ declare namespace gravatar {
     cdn?: string;
     protocol?: boolean | 'https' | 'http';
     format?: 'json' | 'xml' | 'php' | 'vcf' | 'qr';
+    callback?: 'string'
   }
 }
 

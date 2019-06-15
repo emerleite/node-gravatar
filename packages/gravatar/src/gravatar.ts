@@ -5,6 +5,7 @@ import { URLSearchParams } from 'url';
 
 const isBoolean = (arg: any): arg is boolean => typeof arg === 'boolean';
 const isString = (arg: any): arg is string => typeof arg === 'string';
+const isUndefined = (arg: any): arg is undefined => arg === void 0;
 const md5 = (val: string): string => crypto.createHash('md5').update(val, 'utf8').digest('hex');
 
 const BASE_URL = '//gravatar.com';
@@ -25,6 +26,7 @@ interface Options extends ImageOptions {
   cdn?: string,
   protocol?: boolean | 'https' | 'http',
   format?: 'json' | 'xml' | 'php' | 'vcf' | 'qr'
+  callback?: string
 }
 
 function proto({ protocol }: Options = {}): boolean {
@@ -39,11 +41,25 @@ function getHash(email?: string): string {
   return md5(email);
 }
 
-function getQuery({ cdn, format, protocol, ...options }: Options = {}) {
-  const entries = Object.entries(options);
+function getQuery(options: Options = {}) {
+  const {
+    size, s = size,
+    default: defimg, d = defimg,
+    forcedefault, f = forcedefault,
+    rating, r = rating,
+    format,
+    callback
+  } = options;
+  const entries = Object.entries({ s, d, f, r }).reduce((acc, [key, val]) => {
+    if (isUndefined(val)) return acc;
+    acc.push([key, val]);
+    return acc;
+  }, []);
+  if (format === 'json' && !isUndefined(callback)) {
+    entries.push(['callback', callback]);
+  }
   if (!entries.length) return '';
-  const searchParams = new URLSearchParams(entries);
-  return `?${searchParams}`;
+  return `?${new URLSearchParams(entries)}`;
 }
 
 export function url(email: string, options: Options = {}, protocol = proto(options)): string {
