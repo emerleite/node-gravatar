@@ -17,7 +17,8 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "normalize-url": "^4.3.0"
+    "normalize-url": "^4.3.0",
+    "url-join": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

@@ -57,45 +57,45 @@ import gravatar from "gravatar";
 
 const email = "emerleite@gmail.com";
 
-const url = gravatar.url(email, {
+gravatar.url(email, {
   size: 200,
   rating: "pg",
   default: "404"
 });
-//=> //gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=200&rating=pg&default=404
+//=> //gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=200&r=pg&d=404
 
-const unsecureUrl = gravatar.url(email, {
+gravatar.url(email, {
   size: 100,
   rating: "x",
   default: "retro"
 }, false /* [protocol="http"] */);
-//=> http://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100&rating=x&default=retro
+//=> http://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
 
-const secureUrl = gravatar.url(email, {
+gravatar.url(email, {
   size: 100,
   rating: "x",
   default: "retro"
 }, true /* [protocol="https"] */);
-//=> https://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100&rating=x&default=retro
+//=> https://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100&r=x&d=retro
 
-const httpUrl = gravatar.url(email, {
+gravatar.url(email, {
   protocol: "http",
   size: 100
 });
-//=> http://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100
+//=> http://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100
 
-const httpsUrl = gravatar.url(email, {
+gravatar.url(email, {
   protocol: "https",
   size: 100
 });
-//=> https://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?size=100
+//=> https://gravatar.com/avatar/93e9084aa289b7f1f5e4ab6716a56c3b?s=100
 
-const profile1 = gravatar.profileUrl(email, {
+gravatar.profileUrl(email, {
   protocol: "https"
 });
 //=> https://secure.gravatar.com/93e9084aa289b7f1f5e4ab6716a56c3b.json
 
-const profile2 = gravatar.profileUrl(email, {
+gravatar.profileUrl(email, {
   protocol: "http",
   format: "qr"
 });

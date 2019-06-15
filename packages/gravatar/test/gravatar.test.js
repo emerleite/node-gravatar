@@ -3,113 +3,144 @@
 /* eslint-env mocha */
 
 require('should');
+// eslint-disable-next-line camelcase
+const { url: gravatarUrl, profile_url } = require('..');
 const { URL } = require('url');
-const gravatar = require('..');
 const normalizeUrl = require('normalize-url');
+const urlJoin = require('url-join');
 
 const parseUrl = url => new URL(normalizeUrl(url));
 
-describe('gravatar', function () {
-  const baseNoProtocolURL = '//gravatar.com/avatar/';
-  const baseUnsecureURL = 'http://gravatar.com/avatar/';
-  const baseSecureURL = 'https://gravatar.com/avatar/';
-  const profileURL = 'http://gravatar.com/';
-  const profileSecureURL = 'https://gravatar.com/';
+describe('gravatar', () => {
+  const baseUrl = '//gravatar.com';
+  const unsecureUrl = 'http://gravatar.com/';
+  const secureUrl = 'https://gravatar.com/';
   const unspecifiedHash = 'd415f0e30c471dfdd9bc4f827329ef48';
 
-  it('should gererate correct uri given an email', function () {
-    gravatar.url('emerleite@gmail.com').should.be.equal(baseNoProtocolURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
-    gravatar.url('emerleite@yahoo.com.br').should.be.equal(baseNoProtocolURL + '6c47672b0d58bd6aae4fa70920cb3ee4');
-    gravatar.url('93E9084AA289B7F1F5E4AB6716A56C3B@gmail.com').should.be.equal(baseNoProtocolURL + '45503aaa7bc259c0ef5bba9997b77875');
+  it('should gererate correct uri given an email', () => {
+    gravatarUrl('emerleite@gmail.com')
+      .should.equal(urlJoin(baseUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
+    gravatarUrl('emerleite@yahoo.com.br')
+      .should.equal(urlJoin(baseUrl, '/avatar/6c47672b0d58bd6aae4fa70920cb3ee4'));
+    gravatarUrl('93E9084AA289B7F1F5E4AB6716A56C3B@gmail.com')
+      .should.equal(urlJoin(baseUrl, '/avatar/45503aaa7bc259c0ef5bba9997b77875'));
   });
 
-  it('should generate same uri ignoring case', function () {
-    gravatar.url('EMERLEITE@gmAil.com').should.be.equal(baseNoProtocolURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
-    gravatar.url('emerleite@YAHOO.com.BR').should.be.equal(baseNoProtocolURL + '6c47672b0d58bd6aae4fa70920cb3ee4');
+  it('should generate same uri ignoring case', () => {
+    gravatarUrl('EMERLEITE@gmAil.com')
+      .should.equal(urlJoin(baseUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
+    gravatarUrl('emerleite@YAHOO.com.BR')
+      .should.equal(urlJoin(baseUrl, '/avatar/6c47672b0d58bd6aae4fa70920cb3ee4'));
   });
 
-  it('should detect MD5 hashes and not hash them again', function () {
-    gravatar.url('93e9084aa289b7f1f5e4ab6716a56c3b').should.be.equal(baseNoProtocolURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
-    gravatar.url('93E9084AA289B7F1F5E4AB6716A56C3B').should.be.equal(baseNoProtocolURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
+  it('should detect MD5 hashes and not hash them again', () => {
+    gravatarUrl('93e9084aa289b7f1f5e4ab6716a56c3b')
+      .should.equal(urlJoin(baseUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
+    gravatarUrl('93E9084AA289B7F1F5E4AB6716A56C3B')
+      .should.equal(urlJoin(baseUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
   });
 
-  it('should generate uri with user passed parameters', function () {
-    const gravatarURL = gravatar.url('emerleite@gmail.com', { s: 200, f: 'y', r: 'g', d: '404' });
-    const { searchParams } = parseUrl(gravatarURL);
+  it('should generate uri with user passed parameters', () => {
+    const url = gravatarUrl('emerleite@gmail.com', { s: 200, f: 'y', r: 'g', d: '404' });
+    const { searchParams } = parseUrl(url);
     searchParams.get('s').should.equal('200');
     searchParams.get('f').should.equal('y');
     searchParams.get('r').should.equal('g');
     searchParams.get('d').should.equal('404');
   });
 
-  it('should force http protocol on gravatar uri generation', function () {
-    gravatar.url('emerleite@gmail.com', {}, false).should.be.equal(baseUnsecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
-    gravatar.url('emerleite@yahoo.com.br', {}, false).should.be.equal(baseUnsecureURL + '6c47672b0d58bd6aae4fa70920cb3ee4');
+  it('should force http protocol on gravatar uri generation', () => {
+    gravatarUrl('emerleite@gmail.com', {}, false)
+      .should.equal(urlJoin(unsecureUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
+    gravatarUrl('emerleite@yahoo.com.br', {}, false)
+      .should.equal(urlJoin(unsecureUrl, '/avatar/6c47672b0d58bd6aae4fa70920cb3ee4'));
   });
 
-  it('should force https protocol on gravatar uri generation', function () {
-    gravatar.url('emerleite@gmail.com', {}, true);
-    gravatar.url('emerleite@gmail.com', {}, true).should.equal(baseSecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
+  it('should force https protocol on gravatar uri generation', () => {
+    gravatarUrl('emerleite@gmail.com', {}, true)
+      .should.equal(urlJoin(secureUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
   });
 
-  it('should handle falsey values for the email property', function () {
+  it('should handle falsey values for the email property', () => {
     /* eslint-disable no-unused-expressions */
-    gravatar.url(null).should.be.ok;
-    gravatar.url(undefined).should.be.ok;
-    gravatar.url('').should.be.ok;
+    gravatarUrl(null).should.be.ok;
+    gravatarUrl(undefined).should.be.ok;
+    gravatarUrl('').should.be.ok;
     /* eslint-enable */
   });
 
-  it('should handle non string values for the email property', function () {
-    gravatar.url({}, {}, true).should.equal(baseSecureURL + unspecifiedHash);
-    gravatar.url(3, {}, true).should.equal(baseSecureURL + unspecifiedHash);
-    gravatar.url(true, {}, true).should.equal(baseSecureURL + unspecifiedHash);
+  it('should handle non string values for the email property', () => {
+    gravatarUrl({}, {}, true)
+      .should.equal(urlJoin(secureUrl, '/avatar/', unspecifiedHash));
+    gravatarUrl(3, {}, true)
+      .should.equal(urlJoin(secureUrl, '/avatar/', unspecifiedHash));
+    gravatarUrl(true, {}, true)
+      .should.equal(urlJoin(secureUrl, '/avatar/', unspecifiedHash));
   });
 
-  it('should generate profile url', function () {
-    gravatar.profile_url('emerleite@gmail.com', {}, true).should.equal(profileSecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b.json');
-    gravatar.profile_url('emerleite@gmail.com', { format: 'xml' }, true).should.equal(profileSecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b.xml');
-    gravatar.profile_url('emerleite@gmail.com', { format: 'qr' }, true).should.equal(profileSecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b.qr');
-    gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + '93e9084aa289b7f1f5e4ab6716a56c3b.json');
+  it('should generate profile url', () => {
+    profile_url('emerleite@gmail.com', {}, true)
+      .should.equal(urlJoin(secureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.json'));
+    profile_url('emerleite@gmail.com', { format: 'xml' }, true)
+      .should.equal(urlJoin(secureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.xml'));
+    profile_url('emerleite@gmail.com', { format: 'qr' }, true)
+      .should.equal(urlJoin(secureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.qr'));
+    profile_url('emerleite@gmail.com')
+      .should.equal(urlJoin(unsecureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.json'));
   });
 
-  it('should generate unspecified profile url when email is null', function () {
-    gravatar.profile_url(null, {}, true).should.equal(profileSecureURL + unspecifiedHash + '.json');
-    gravatar.profile_url(undefined, {}, true).should.equal(profileSecureURL + unspecifiedHash + '.json');
+  it('should generate unspecified profile url when email is null', () => {
+    profile_url(null, {}, true)
+      .should.equal(urlJoin(secureUrl, `${unspecifiedHash}.json`));
+    profile_url(undefined, {}, true)
+      .should.equal(urlJoin(secureUrl, `${unspecifiedHash}.json`));
   });
 
-  it('should force http protocol on gravatar uri generation via options', function () {
-    gravatar.url('emerleite@gmail.com', { protocol: 'http' }).should.be.equal(baseUnsecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
-    gravatar.url('emerleite@yahoo.com.br', { protocol: 'http' }).should.be.equal(baseUnsecureURL + '6c47672b0d58bd6aae4fa70920cb3ee4');
+  it('should force http protocol on gravatar uri generation via options', () => {
+    gravatarUrl('emerleite@gmail.com', { protocol: 'http' })
+      .should.equal(urlJoin(unsecureUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
+    gravatarUrl('emerleite@yahoo.com.br', { protocol: 'http' })
+      .should.equal(urlJoin(unsecureUrl, '/avatar/6c47672b0d58bd6aae4fa70920cb3ee4'));
   });
 
-  it('should force https protocol on gravatar uri generation via options', function () {
-    gravatar.url('emerleite@gmail.com', { protocol: 'https' }).should.equal(baseSecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b');
+  it('should force https protocol on gravatar uri generation via options', () => {
+    gravatarUrl('emerleite@gmail.com', { protocol: 'https' })
+      .should.equal(urlJoin(secureUrl, '/avatar/93e9084aa289b7f1f5e4ab6716a56c3b'));
   });
 
-  it('should generate uri with user passed parameters and protocol in options', function () {
-    const gravatarURL = gravatar.url('emerleite@gmail.com', { protocol: 'https', s: 200, f: 'y', r: 'g', d: '404' });
-    const { searchParams } = parseUrl(gravatarURL);
+  it('should generate uri with user passed parameters and protocol in options', () => {
+    const url = gravatarUrl('emerleite@gmail.com', { protocol: 'https', s: 200, f: 'y', r: 'g', d: '404' });
+    const { searchParams } = parseUrl(url);
     searchParams.get('s').should.equal('200');
     searchParams.get('f').should.equal('y');
     searchParams.get('r').should.equal('g');
     searchParams.get('d').should.equal('404');
   });
 
-  it('should generate profile url with protocol in options', function () {
-    gravatar.profile_url('emerleite@gmail.com', { protocol: 'https' }).should.equal(profileSecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b.json');
-    gravatar.profile_url('emerleite@gmail.com', { protocol: 'https', format: 'xml' }).should.equal(profileSecureURL + '93e9084aa289b7f1f5e4ab6716a56c3b.xml');
-    gravatar.profile_url('emerleite@gmail.com', { protocol: 'http', format: 'qr' }).should.equal(profileURL + '93e9084aa289b7f1f5e4ab6716a56c3b.qr');
-    gravatar.profile_url('emerleite@gmail.com').should.equal(profileURL + '93e9084aa289b7f1f5e4ab6716a56c3b.json');
+  it('should generate profile url with protocol in options', () => {
+    profile_url('emerleite@gmail.com', { protocol: 'https' })
+      .should.equal(urlJoin(secureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.json'));
+    profile_url('emerleite@gmail.com', { protocol: 'https', format: 'xml' })
+      .should.equal(urlJoin(secureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.xml'));
+    profile_url('emerleite@gmail.com', { protocol: 'http', format: 'qr' })
+      .should.equal(urlJoin(unsecureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.qr'));
+    profile_url('emerleite@gmail.com')
+      .should.equal(urlJoin(unsecureUrl, '93e9084aa289b7f1f5e4ab6716a56c3b.json'));
   });
 
-  it('should generate profile url with cdn in options', function () {
+  it('should generate profile url with cdn in options', () => {
     const cdn = 'http://cdn-gravatar.wuweixing.com';
-    gravatar.profile_url('emerleite@gmail.com', { cdn: cdn }).should.equal(cdn + '/93e9084aa289b7f1f5e4ab6716a56c3b.json');
-    gravatar.profile_url('emerleite@gmail.com', { cdn: cdn, format: 'xml' }).should.equal(cdn + '/93e9084aa289b7f1f5e4ab6716a56c3b.xml');
-    gravatar.profile_url('emerleite@gmail.com', { cdn: cdn, format: 'qr' }).should.equal(cdn + '/93e9084aa289b7f1f5e4ab6716a56c3b.qr');
-    gravatar.url({}, { cdn: cdn }, true).should.equal(cdn + '/avatar/' + unspecifiedHash);
-    gravatar.url(3, { cdn: cdn }, true).should.equal(cdn + '/avatar/' + unspecifiedHash);
-    gravatar.url(true, { cdn: cdn }, true).should.equal(cdn + '/avatar/' + unspecifiedHash);
+    profile_url('emerleite@gmail.com', { cdn: cdn })
+      .should.equal(urlJoin(cdn, '/93e9084aa289b7f1f5e4ab6716a56c3b.json'));
+    profile_url('emerleite@gmail.com', { cdn: cdn, format: 'xml' })
+      .should.equal(urlJoin(cdn, '/93e9084aa289b7f1f5e4ab6716a56c3b.xml'));
+    profile_url('emerleite@gmail.com', { cdn: cdn, format: 'qr' })
+      .should.equal(urlJoin(cdn, '/93e9084aa289b7f1f5e4ab6716a56c3b.qr'));
+    gravatarUrl({}, { cdn: cdn }, true)
+      .should.equal(urlJoin(cdn, '/avatar/', unspecifiedHash));
+    gravatarUrl(3, { cdn: cdn }, true)
+      .should.equal(urlJoin(cdn, '/avatar/', unspecifiedHash));
+    gravatarUrl(true, { cdn: cdn }, true)
+      .should.equal(urlJoin(cdn, '/avatar/', unspecifiedHash));
   });
 });
