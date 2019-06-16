@@ -65,14 +65,9 @@ function getQuery(options: Options = {}) {
 
 export function url(email: string, options: Options = {}, protocol = proto(options)): string {
   const { cdn } = options;
-  let url;
-  if (cdn) {
-    url = urlJoin(cdn, '/avatar');
-  } else {
-    url = urlJoin(baseUrl, '/avatar');
-    if (isBoolean(protocol)) {
-      url = normalizeUrl(url, { forceHttps: protocol });
-    }
+  let url = urlJoin(cdn || baseUrl, '/avatar')
+  if (!cdn && isBoolean(protocol)) {
+    url = normalizeUrl(url, { forceHttps: protocol });
   }
   const hash = getHash(email);
   const query = getQuery(options);
@@ -81,12 +76,7 @@ export function url(email: string, options: Options = {}, protocol = proto(optio
 
 export function profileUrl(email: string, options: Options = {}, protocol = proto(options)): string {
   const { cdn, format = 'json' } = options;
-  let url = '';
-  if (cdn) {
-    url = `${cdn}`;
-  } else {
-    url = normalizeUrl(baseUrl, { forceHttps: Boolean(protocol) });
-  }
+  const url = cdn || normalizeUrl(baseUrl, { forceHttps: Boolean(protocol) });
   const hash = getHash(email);
   const query = getQuery(options);
   return urlJoin(url, `${hash}.${format}`, query);
