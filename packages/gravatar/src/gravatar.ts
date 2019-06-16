@@ -30,7 +30,7 @@ interface Options extends ImageOptions {
   callback?: string
 }
 
-function proto({ protocol }: Options = {}): boolean {
+function proto({ protocol }: Options = {}): boolean | undefined {
   if (isBoolean(protocol)) return protocol;
   if (protocol === 'https') return true;
   if (protocol === 'http') return false;
