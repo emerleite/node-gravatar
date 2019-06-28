@@ -21,7 +21,7 @@ const baseConfig = {
         }
       }
     }),
-    babel()
+    babel({ exclude: 'node_modules/**' })
   ]
 };
 
