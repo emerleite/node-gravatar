@@ -21,10 +21,10 @@
     "url-join": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "mocha": "6.1.4",
-    "rollup": "^1.15.2",
-    "rollup-plugin-typescript2": "^0.21.1",
+    "rollup": "^1.16.2",
+    "rollup-plugin-typescript2": "^0.21.2",
     "should": "13.2.3",
     "tsd": "^0.7.3",
     "typescript": "^3.5.2"
@@ -33,7 +33,7 @@
   "module": "lib/gravatar.esm.js",
   "types": "index.d.ts",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint --ext .js,.ts .",
     "build": "rollup -c rollup.config.js",
     "pretest": "yarn run build",
     "test": "mocha -R spec && tsd"

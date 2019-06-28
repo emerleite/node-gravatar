@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/yargs": "^13.0.0",
     "email-validator": "^2.0.4",
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "mocha": "6.1.4",
     "nixt": "^0.5.1",
     "should": "13.2.3"

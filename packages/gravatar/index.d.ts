@@ -14,18 +14,20 @@ declare namespace gravatar {
     cdn?: string;
     protocol?: boolean | 'https' | 'http';
     format?: 'json' | 'xml' | 'php' | 'vcf' | 'qr';
-    callback?: 'string'
+    callback?: 'string';
   }
 }
 
 export declare function url(email: string, options?: gravatar.Options, protocol?: boolean): string;
 export declare function profileUrl(email: string, options?: gravatar.Options, protocol?: boolean): string;
+/* eslint-disable-next-line @typescript-eslint/camelcase */
 export declare const profile_url: typeof profileUrl;
 
 declare const gravatar: {
-  url: typeof url,
-  profileUrl: typeof profileUrl,
-  profile_url: typeof profile_url
+  url: typeof url;
+  profileUrl: typeof profileUrl;
+  /* eslint-disable-next-line @typescript-eslint/camelcase */
+  profile_url: typeof profile_url;
 };
 
 export default gravatar;

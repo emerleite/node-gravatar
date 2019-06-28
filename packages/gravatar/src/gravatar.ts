@@ -4,30 +4,30 @@ import normalizeUrl from 'normalize-url';
 import urlJoin from 'url-join';
 import { URLSearchParams } from 'url';
 
-const isBoolean = (arg: any): arg is boolean => typeof arg === 'boolean';
-const isString = (arg: any): arg is string => typeof arg === 'string';
-const isUndefined = (arg: any): arg is undefined => arg === void 0;
+const isBoolean = (arg: unknown): arg is boolean => typeof arg === 'boolean';
+const isString = (arg: unknown): arg is string => typeof arg === 'string';
+const isUndefined = (arg: unknown): arg is undefined => arg === void 0;
 const md5 = (val: string): string => crypto.createHash('md5').update(val, 'utf8').digest('hex');
 
 const baseUrl = '//gravatar.com';
 const reHash = /^[0-9a-f]{32}$/;
 
 interface ImageOptions {
-  size?: string | number,
-  default?: '404' | 'mp' | 'identicon' | 'monsterid' | 'wavatar' | 'retro' | 'robohash' | 'blank' | string,
-  forcedefault?: 'y'
-  rating?: 'g' | 'pg' | 'r' | 'x',
-  s?: ImageOptions['size'],
-  d?: ImageOptions['default'],
-  f?: ImageOptions['forcedefault'],
-  r?: ImageOptions['rating'],
+  size?: string | number;
+  default?: '404' | 'mp' | 'identicon' | 'monsterid' | 'wavatar' | 'retro' | 'robohash' | 'blank' | string;
+  forcedefault?: 'y';
+  rating?: 'g' | 'pg' | 'r' | 'x';
+  s?: ImageOptions['size'];
+  d?: ImageOptions['default'];
+  f?: ImageOptions['forcedefault'];
+  r?: ImageOptions['rating'];
 }
 
 interface Options extends ImageOptions {
-  cdn?: string,
-  protocol?: boolean | 'https' | 'http',
-  format?: 'json' | 'xml' | 'php' | 'vcf' | 'qr'
-  callback?: string
+  cdn?: string;
+  protocol?: boolean | 'https' | 'http';
+  format?: 'json' | 'xml' | 'php' | 'vcf' | 'qr';
+  callback?: string;
 }
 
 function proto({ protocol }: Options = {}): boolean | undefined {
@@ -42,7 +42,7 @@ function getHash(email?: string): string {
   return md5(email);
 }
 
-function getQuery(options: Options = {}) {
+function getQuery(options: Options = {}): string {
   const {
     size, s = size,
     default: defimg, d = defimg,
@@ -51,7 +51,7 @@ function getQuery(options: Options = {}) {
     format,
     callback
   } = options;
-  const entries = Object.entries({ s, d, f, r }).reduce((acc, [key, val]) => {
+  const entries = Object.entries({ s, d, f, r }).reduce((acc, [key, val]): [string, string][] => {
     if (isUndefined(val)) return acc;
     acc.push([key, val]);
     return acc;
@@ -65,7 +65,7 @@ function getQuery(options: Options = {}) {
 
 export function url(email: string, options: Options = {}, protocol = proto(options)): string {
   const { cdn } = options;
-  let url = urlJoin(cdn || baseUrl, '/avatar')
+  let url = urlJoin(cdn || baseUrl, '/avatar');
   if (!cdn && isBoolean(protocol)) {
     url = normalizeUrl(url, { forceHttps: protocol });
   }
@@ -82,6 +82,8 @@ export function profileUrl(email: string, options: Options = {}, protocol = prot
   return urlJoin(url, `${hash}.${format}`, query);
 }
 
+/* eslint-disable-next-line @typescript-eslint/camelcase */
 export const profile_url = deprecate(profileUrl, 'profile_url() is deprecated. Use profileUrl() instead.');
 
+/* eslint-disable-next-line @typescript-eslint/camelcase */
 export default { url, profileUrl, profile_url };
