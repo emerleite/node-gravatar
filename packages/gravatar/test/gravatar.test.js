@@ -41,7 +41,14 @@ describe('gravatar', () => {
   });
 
   it('should generate uri with user passed parameters', () => {
-    const url = gravatarUrl('emerleite@gmail.com', { s: 200, f: 'y', r: 'g', d: '404' });
+    /** @type {import('..').default.Options} */
+    const options = {
+      size: 200,
+      forceDefault: true,
+      rating: 'g',
+      default: '404'
+    };
+    const url = gravatarUrl('emerleite@gmail.com', options);
     const { searchParams } = parseUrl(url);
     searchParams.get('s').should.equal('200');
     searchParams.get('f').should.equal('y');
@@ -109,7 +116,15 @@ describe('gravatar', () => {
   });
 
   it('should generate uri with user passed parameters and protocol in options', () => {
-    const url = gravatarUrl('emerleite@gmail.com', { protocol: 'https', s: 200, f: 'y', r: 'g', d: '404' });
+    /** @type {import('..').default} */
+    const options = {
+      protocol: 'https',
+      size: 200,
+      forcedefault: 'y',
+      rating: 'g',
+      default: '404'
+    };
+    const url = gravatarUrl('emerleite@gmail.com', options);
     const { searchParams } = parseUrl(url);
     searchParams.get('s').should.equal('200');
     searchParams.get('f').should.equal('y');

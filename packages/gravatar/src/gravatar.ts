@@ -15,7 +15,8 @@ const reHash = /^[0-9a-f]{32}$/;
 interface ImageOptions {
   size?: string | number;
   default?: '404' | 'mp' | 'identicon' | 'monsterid' | 'wavatar' | 'retro' | 'robohash' | 'blank' | string;
-  forcedefault?: 'y';
+  forcedefault?: boolean | 'y' | 'n';
+  forceDefault?: ImageOptions['forcedefault'];
   rating?: 'g' | 'pg' | 'r' | 'x';
   s?: ImageOptions['size'];
   d?: ImageOptions['default'];
@@ -46,13 +47,14 @@ function getQuery(options: Options = {}): string {
   const {
     size, s = size,
     default: defimg, d = defimg,
-    forcedefault, f = forcedefault,
+    forceDefault, forcedefault = forceDefault, f = forcedefault,
     rating, r = rating,
     format,
     callback
   } = options;
   const entries = Object.entries({ s, d, f, r }).reduce((acc, [key, val]): [string, string][] => {
     if (isUndefined(val)) return acc;
+    if (isBoolean(val)) val = val ? 'y' : 'n';
     acc.push([key, val]);
     return acc;
   }, []);

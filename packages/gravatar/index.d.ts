@@ -2,7 +2,8 @@ declare namespace gravatar {
   interface ImageOptions {
     size?: string | number;
     default?: '404' | 'mp' | 'identicon' | 'monsterid' | 'wavatar' | 'retro' | 'robohash' | 'blank' | string;
-    forcedefault?: 'y';
+    forcedefault?: boolean | 'y' | 'n';
+    forceDefault?: ImageOptions['forcedefault'];
     rating?: 'g' | 'pg' | 'r' | 'x';
     s?: ImageOptions['size'];
     d?: ImageOptions['default'];
