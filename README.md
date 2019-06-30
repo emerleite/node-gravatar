@@ -41,11 +41,11 @@ gravatar.profileUrl(email, options, protocol);
 - `email`:
   The gravatar email
 - `options`:
-  Query string options. Ex: `size` or `s`, `default` or `d`, `rating` or `r`, `forcedefault` or `f`.
+  Query string options. Ex: `size` or `s`, `default` or `d`, `rating` or `r`, `forceDefault` or `f`.
   Additional options not passed as a query string:
   `protocol` (e.g. `"http"` or `"https"`) and `format` (only for `profileUrl`, e.g. `"xml"`, `"qr"`,
   by default it is `"json"`)
-  Should be passed as an object. Ex: `{s: '200', f: 'y', d: '404'}`
+  Should be passed as an object. Ex: `{ size: 200, forceDefault: true, default: "404" }`
 - `protocol`
   Define if will use no protocol, http or https gravatar URL. Default is 'undefined', which generates URLs without protocol. True to force https and false to force http.
   It can also be set as `protocol` in `options` - see above.
