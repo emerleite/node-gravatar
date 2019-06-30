@@ -5,6 +5,7 @@
 const emailValidator = require('email-validator');
 const gravatar = require('gravatar');
 const pkg = require('./package.json');
+const yargs = require('yargs');
 
 /** @type {import('yargs').CommandBuilder} */
 const options = {
@@ -20,7 +21,8 @@ const options = {
   d: {
     alias: 'default',
     describe: `default image when no profile image found.   [choices: "404",
-      "mm", "identicon", "monsterid", "wavatar", "retro", "blank", "an image url"]`
+      "mp", "identicon", "monsterid", "wavatar", "retro", "robohash", blank",
+      "an image url"]`
   }
 };
 
@@ -29,7 +31,7 @@ const profileOptions = {
   f: {
     alias: 'format',
     describe: 'format of the requested profile url',
-    choices: ['json', 'xml', 'qr', 'php', 'vcf'],
+    choices: ['json', 'xml', 'php', 'vcf', 'qr'],
     default: 'json'
   },
   c: {
@@ -48,32 +50,23 @@ const getOptions = argv => pick(argv, [
   ...Object.values(profileOptions).map(({ alias }) => alias)
 ]);
 
-const setUsage = function (yargs) {
-  return yargs
-    .options(options)
-    .help('h')
-    .alias('h', 'help')
-    .alias('v', 'version')
-    .version(`gravatar version: ${pkg.version}`)
-    .describe('v', 'show version information')
-    .epilogue(footer);
-};
-
-const yargs = setUsage(require('yargs'))
+const argv = yargs
   .usage('Usage: $0 [command] <somebody@example.com> [options]')
   .command('avatar', 'avatar somebody@example.com  [options]', options)
   .command('profile', 'profile somebody@example.com  [options]', profileOptions)
   .example('$0 somebody@example.com')
   .example('$0 avatar somebody@example.com')
-  .example('$0 profile somebody@example.com');
+  .example('$0 profile somebody@example.com')
+  .options(options)
+  .help('h')
+  .alias('h', 'help')
+  .alias('v', 'version')
+  .version(`gravatar version: ${pkg.version}`)
+  .describe('v', 'show version information')
+  .epilogue(footer)
+  .argv;
 
-function printAvatarUrl(email, options) {
-  console.log('Gravatar (avatar):\n%s', gravatar.url(email, options));
-}
-
-function printAvatarProfile(email, options) {
-  console.log('Gravatar (profile):\n%s', gravatar.profileUrl(email, options));
-}
+exec(argv);
 
 function exec(argv) {
   const [ command, email ] = argv._;
@@ -91,8 +84,13 @@ function exec(argv) {
   return '';
 }
 
-exec(yargs.argv);
-process.exit();
+function printAvatarUrl(email, options) {
+  console.log('Gravatar (avatar):\n%s', gravatar.url(email, options));
+}
+
+function printAvatarProfile(email, options) {
+  console.log('Gravatar (profile):\n%s', gravatar.profileUrl(email, options));
+}
 
 function pick(obj, keys = []) {
   return keys.reduce((acc, key) => {
