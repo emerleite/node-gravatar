@@ -17,7 +17,7 @@
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "mocha": "1.21.4",
+    "mocha": "^6.1.4",
     "nixt": "^0.5.1",
     "should": "4.0.4"
   },
