@@ -15,7 +15,6 @@
   "dependencies": {
     "blueimp-md5": "^2.3.0",
     "email-validator": "^2.0.3",
-    "querystring": "0.2.0",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
