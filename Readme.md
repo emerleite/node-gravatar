@@ -1,15 +1,16 @@
 [![Build Status](https://secure.travis-ci.org/emerleite/node-gravatar.svg)](http://travis-ci.org/emerleite/node-gravatar)
 
-Node.js Gravatar library
+Gravatar
 ========================
-A library to generate Gravatar URLs in Node.js
+A library to generate [Gravatar](http://gravatar.com) URLs in the browser or node.js
 Based on gravatar specs - <http://en.gravatar.com/site/implement/hash/> and <http://en.gravatar.com/site/implement/images/>
 
 Dependencies
 ------------
 
 ### Runtime
-* Node 0.8.X+
+* [node 10.X+](https://nodejs.org/docs/latest-v10.x/api/url.html) and newer
+* A [current web browser](https://caniuse.com/#search=URLSearchParams)
 
 ### Development/Tests
 * mocha
@@ -96,12 +97,11 @@ gravatar profile somebody@example.com
 ```
 
 
-Running tests (3 ways)
+Running tests (2 ways)
 ----------------------
 ```sh
-$ npm test
-$ mocha (installed global)
-$ node_modules/mocha/bin/mocha
+$ npm run test
+$ npx mocha 
 ```
 
 To-Do

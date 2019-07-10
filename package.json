@@ -1,12 +1,11 @@
 {
   "name": "gravatar",
-  "description": "Gravatar Node.js library",
+  "description": "Gravatar for node.js and browsers",
   "keywords": [
     "gravatar",
-    "avatar",
-    "package.json"
+    "avatar"
   ],
-  "version": "1.8.0",
+  "version": "2.0.0",
   "author": "Emerson Macedo <emerleite@gmail.com>",
   "repository": {
     "type": "git",
@@ -15,17 +14,16 @@
   "dependencies": {
     "blueimp-md5": "^2.3.0",
     "email-validator": "^2.0.3",
-    "querystring": "0.2.0",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "mocha": "1.21.4",
+    "mocha": "^6.1.4",
     "nixt": "^0.5.1",
     "should": "4.0.4"
   },
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha -R spec"
+    "test": "npx mocha -R spec"
   },
   "license": "MIT",
   "engines": {
