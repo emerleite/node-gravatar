@@ -1,6 +1,6 @@
 {
   "name": "gravatar",
-  "description": "Gravatar Node.js library",
+  "description": "Gravatar for node.js and browsers",
   "keywords": [
     "gravatar",
     "avatar"

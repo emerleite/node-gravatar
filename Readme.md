@@ -9,7 +9,7 @@ Dependencies
 ------------
 
 ### Runtime
-* [node 6.X+](https://nodejs.org/docs/latest-v6.x/api/url.html) and newer
+* [node 10.X+](https://nodejs.org/docs/latest-v10.x/api/url.html) and newer
 * A [current web browser](https://caniuse.com/#search=URLSearchParams)
 
 ### Development/Tests

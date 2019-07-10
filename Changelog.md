@@ -1,7 +1,7 @@
 # 2.0.0
 
     * Removed querystring dependency
-    * Update node minimum requirement to [node 6.X+](https://nodejs.org/docs/latest-v6.x/api/url.html)
+    * Update node minimum requirement to [node 10.X+](https://nodejs.org/docs/latest-v6.x/api/url.html)
     * Officially support [current web browsers](https://caniuse.com/#search=URLSearchParams)
     * Fix [command injection vulnerability](https://npmjs.com/advisories/146) - note this only affected testing, not using `gravatar`
 
