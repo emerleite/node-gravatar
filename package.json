@@ -23,7 +23,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha -R spec"
+    "test": "npx mocha -R spec"
   },
   "license": "MIT",
   "engines": {
