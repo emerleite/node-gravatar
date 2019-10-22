@@ -7,7 +7,7 @@ import { URLSearchParams } from 'url';
 
 const isBoolean = (arg: unknown): arg is boolean => typeof arg === 'boolean';
 const isString = (arg: unknown): arg is string => typeof arg === 'string';
-const isUndefined = (arg: unknown): arg is undefined => arg === void 0;
+const isUndefined = (arg: unknown): arg is undefined => arg === undefined;
 const md5 = (val: string): string => crypto.createHash('md5').update(val, 'utf8').digest('hex');
 
 const baseUrl = '//gravatar.com';

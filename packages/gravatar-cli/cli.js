@@ -7,6 +7,8 @@ const gravatar = require('gravatar');
 const pkg = require('./package.json');
 const yargs = require('yargs');
 
+const hasOwnProperty = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
+
 /** @type {import('yargs').CommandBuilder} */
 const options = {
   s: {
@@ -69,7 +71,7 @@ const argv = yargs
 exec(argv);
 
 function exec(argv) {
-  const [ command, email ] = argv._;
+  const [command, email] = argv._;
   const options = getOptions(argv);
   if (command === 'profile') {
     return printAvatarProfile(email, options);
@@ -94,7 +96,7 @@ function printAvatarProfile(email, options) {
 
 function pick(obj, keys = []) {
   return keys.reduce((acc, key) => {
-    if (!obj.hasOwnProperty(key) || !obj[key]) return acc;
+    if (!hasOwnProperty(obj, key) || !obj[key]) return acc;
     return Object.assign(acc, { [key]: obj[key] });
   }, {});
 }

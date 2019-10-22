@@ -17,17 +17,17 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "normalize-url": "^4.3.0",
-    "url-join": "^4.0.0"
+    "normalize-url": "^4.5.0",
+    "url-join": "^4.0.1"
   },
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "mocha": "6.1.4",
-    "rollup": "^1.16.3",
-    "rollup-plugin-typescript2": "^0.21.2",
+    "eslint": "^6.5.1",
+    "mocha": "6.2.2",
+    "rollup": "^1.25.1",
+    "rollup-plugin-typescript2": "^0.24.3",
     "should": "13.2.3",
-    "tsd": "^0.7.3",
-    "typescript": "^3.5.2"
+    "tsd": "^0.9.0",
+    "typescript": "^3.6.4"
   },
   "main": "lib/gravatar.js",
   "module": "lib/gravatar.esm.js",
