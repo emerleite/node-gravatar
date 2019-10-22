@@ -1,6 +1,7 @@
 import * as crypto from 'crypto';
 import { deprecate } from 'util';
 import normalizeUrl from 'normalize-url';
+import { Options } from '..';
 import urlJoin from 'url-join';
 import { URLSearchParams } from 'url';
 
@@ -11,25 +12,6 @@ const md5 = (val: string): string => crypto.createHash('md5').update(val, 'utf8'
 
 const baseUrl = '//gravatar.com';
 const reHash = /^[0-9a-f]{32}$/;
-
-interface ImageOptions {
-  size?: string | number;
-  default?: '404' | 'mp' | 'identicon' | 'monsterid' | 'wavatar' | 'retro' | 'robohash' | 'blank' | string;
-  forcedefault?: boolean | 'y' | 'n';
-  forceDefault?: ImageOptions['forcedefault'];
-  rating?: 'g' | 'pg' | 'r' | 'x';
-  s?: ImageOptions['size'];
-  d?: ImageOptions['default'];
-  f?: ImageOptions['forcedefault'];
-  r?: ImageOptions['rating'];
-}
-
-interface Options extends ImageOptions {
-  cdn?: string;
-  protocol?: boolean | 'https' | 'http';
-  format?: 'json' | 'xml' | 'php' | 'vcf' | 'qr';
-  callback?: string;
-}
 
 function proto({ protocol }: Options = {}): boolean | undefined {
   if (isBoolean(protocol)) return protocol;
