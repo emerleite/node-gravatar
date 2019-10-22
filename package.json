@@ -1,37 +1,27 @@
 {
+  "private": true,
   "name": "gravatar",
-  "description": "Gravatar Node.js library",
-  "keywords": [
-    "gravatar",
-    "avatar",
-    "package.json"
-  ],
-  "version": "1.8.0",
-  "author": "Emerson Macedo <emerleite@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/emerleite/node-gravatar.git"
-  },
-  "dependencies": {
-    "blueimp-md5": "^2.3.0",
-    "email-validator": "^2.0.3",
-    "querystring": "0.2.0",
-    "yargs": "^11.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "mocha": "1.21.4",
-    "nixt": "^0.5.1",
-    "should": "4.0.4"
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "eslint": "^6.5.1",
+    "eslint-config-semistandard": "^15.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "rollup": "^1.25.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
-  "main": "index.js",
-  "scripts": {
-    "test": "node_modules/mocha/bin/mocha -R spec"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "bin": {
-    "gravatar": "cli.js"
-  }
+  "workspaces": [
+    "packages/gravatar",
+    "packages/gravatar-cli"
+  ]
 }

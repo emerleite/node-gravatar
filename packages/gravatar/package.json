@@ -1,0 +1,48 @@
+{
+  "name": "gravatar",
+  "description": "Gravatar Node.js library",
+  "keywords": [
+    "gravatar",
+    "avatar"
+  ],
+  "version": "1.8.0",
+  "author": "Emerson Macedo <emerleite@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/emerleite/node-gravatar.git"
+  },
+  "homepage": "https://github.com/emerleite/node-gravatar",
+  "files": [
+    "lib",
+    "index.d.ts"
+  ],
+  "dependencies": {
+    "normalize-url": "^4.5.0",
+    "url-join": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "mocha": "6.2.2",
+    "rollup": "^1.25.1",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "should": "13.2.3",
+    "tsd": "^0.9.0",
+    "typescript": "^3.6.4"
+  },
+  "main": "lib/gravatar.js",
+  "module": "lib/gravatar.esm.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "rollup -c rollup.config.js",
+    "pretest": "yarn run build",
+    "test": "mocha -R spec && tsd"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "bin": {
+    "gravatar": "cli.js"
+  }
+}
