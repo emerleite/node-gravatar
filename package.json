@@ -16,10 +16,10 @@
     "blueimp-md5": "^2.3.0",
     "email-validator": "^2.0.3",
     "querystring": "0.2.0",
-    "yargs": "^11.0.0"
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
-    "mocha": "1.21.4",
+    "mocha": "^7.1.2",
     "nixt": "^0.5.1",
     "should": "4.0.4"
   },
