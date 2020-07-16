@@ -9,7 +9,7 @@ Dependencies
 ------------
 
 ### Runtime
-* Node 0.8.X+
+* Node 10+
 
 ### Development/Tests
 * mocha
