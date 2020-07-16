@@ -23,7 +23,7 @@ var setUsage = function(yargs){
       .help('h')
       .alias('h', 'help')
       .alias('v', 'version')
-      .version(function() { return 'gravatar version: ' + require('./package').version; })
+      .version()
       .describe('v', 'show version information')
       .epilogue('Useful Links:' +
           '\n- https://en.gravatar.com/site/implement/images/' +
