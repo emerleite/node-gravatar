@@ -6,30 +6,30 @@
     "avatar",
     "package.json"
   ],
-  "version": "1.8.0",
+  "version": "1.8.1",
   "author": "Emerson Macedo <emerleite@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git://github.com/emerleite/node-gravatar.git"
   },
   "dependencies": {
-    "blueimp-md5": "^2.3.0",
-    "email-validator": "^2.0.3",
+    "blueimp-md5": "^2.16.0",
+    "email-validator": "^2.0.4",
     "querystring": "0.2.0",
-    "yargs": "^11.0.0"
+    "yargs": "^15.4.1"
   },
   "devDependencies": {
-    "mocha": "1.21.4",
+    "mocha": "8.0.1",
     "nixt": "^0.5.1",
-    "should": "4.0.4"
+    "should": "13.2.3"
   },
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha -R spec"
+    "test": "mocha -R spec"
   },
   "license": "MIT",
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=10"
   },
   "bin": {
     "gravatar": "cli.js"

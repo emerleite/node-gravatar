@@ -1,3 +1,7 @@
+# 1.8.1
+    * Upgraded deps, fix critical vulns.
+    * Drop support for Node < 10
+
 # 1.8.0
     * Allows pass `cdn` information when generating gravatar url (sqlwwx)
 
