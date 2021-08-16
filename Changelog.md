@@ -1,3 +1,5 @@
+# 1.8.2
+    * Upgraded deps, fix critical vulns. (glob-parent)
 # 1.8.1
     * Upgraded deps, fix critical vulns. (dscalzi)
     * Drop support for Node < 10 (dscalzi)
